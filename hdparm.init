@@ -19,7 +19,8 @@
 case "$1" in
   start)
   	cd /dev
-	for drive in hd? ; do
+	DRIVES=`cut -c 22- < /proc/partitions | egrep -v -e"md|name"`
+	for drive in $DRIVES ; do
 	  eval PARAMS=\${HDPARM_${drive}}
 	  if [ -n "${PARAMS}" ] ; then
 	    show "Setting $drive parameters"
