@@ -13,7 +13,6 @@ for drive in $(ls /proc/ide 2> /dev/null); do
 			show "Setting parameters for drive %s" "$drive"
 			busy
 			/sbin/hdparm ${PARAMS} /dev/${drive}
-			deltext
 			ok
 		fi
 	fi
