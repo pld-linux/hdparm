@@ -9,7 +9,7 @@
 for drive in $(ls /proc/ide 2> /dev/null); do
 	if [ -L "/proc/ide/${drive}" ]; then
 		eval PARAMS=\$HDPARM_${drive}
-		if [ -n "${PARAMS}" ] ; then
+		if [ -n "${PARAMS}" ]; then
 			show "Setting parameters for drive %s" "$drive"
 			busy
 			/sbin/hdparm ${PARAMS} /dev/${drive}
