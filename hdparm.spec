@@ -4,17 +4,16 @@ Summary(fr):	Utilitaire pour ajuster les paramétres de performances des unités (
 Summary(pl):	Narzêdzie do ustawiania parametrow (E)IDE
 Summary(tr):	(E)IDE sabit disklerle ilgili bazý parametreleri deðiþtirir
 Name:		hdparm
-Version:	3.9
-Release:	7
-License:	Distributable
-Group:		Utilities/System
-Group(pl):	Narzêdzia/System
+Version:	4.1
+Release:	1
+License:	BSD
+Group:		Applications/System
+Group(de):	Applikationen/System
+Group(pl):	Aplikacje/System
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/hardware/%{name}-%{version}.tar.gz
-Source1:	hdparm.init
-Source2:	hdparm.sysconfig
-Patch0:		hdparm-optflags.patch
-Patch1:		hdparm-sparc.patch
-Patch2:		http://www.kernel.org/pub/linux/kernel/people/hedrick/utility-patches/%{name}-%{version}a.patch.gz
+Source1:	%{name}.init
+Source2:	%{name}.sysconfig
+Patch0:		%{name}-optflags.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -47,15 +46,13 @@ daha az güç harcamak için kullanabilirsiniz.
 %prep
 %setup  -q
 %patch0 -p1
-%patch1 -p1
-%patch2 -p0
 
 %build
-%{__make} OPTFLAGS="$RPM_OPT_FLAGS"
+%{__make} OPTFLAGS="%{?debug:-O0 -g}%{!?debug:$RPM_OPT_FLAGS}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{{/sbin,%{_mandir}/man8},/etc/{sysconfig,rc.d/init.d}}
+install -d $RPM_BUILD_ROOT{{/sbin,%{_mandir}/man8},%{_sysconfdir}/{sysconfig,rc.d/init.d}}
 
 install hdparm $RPM_BUILD_ROOT/sbin
 install hdparm.8 $RPM_BUILD_ROOT%{_mandir}/man8
@@ -70,8 +67,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz
-%doc contrib
+%doc *.gz contrib
 %attr(755,root,root) /sbin/hdparm
 %attr(754,root,root) /etc/rc.d/rc.hdparm
 %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/hdparm
