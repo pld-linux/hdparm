@@ -1,12 +1,4 @@
 #!/bin/sh
-#
-# hdpram        Sets up some hard drive parameters
-#
-#
-# chkconfig:	2345 5 95
-# description:	hdparm is utility which can help tuning your hard drive\
-#		parameters
-
 
 # Source function library
 . /etc/rc.d/init.d/functions
@@ -14,38 +6,15 @@
 # Get service config
 [ -f /etc/sysconfig/hdparm ] && . /etc/sysconfig/hdparm
 
-
-# See how we were called.
-case "$1" in
-  start)
-	DRIVES=`cut -c 22- < /proc/partitions | egrep -v -e"md|name"`
-	for drive in $DRIVES; do
-		eval PARAMS=\${HDPARM_${drive}}
-		if [ -n "${PARAMS}" ] ; then
-			show "Setting $drive parameters"
-			busy
-			/sbin/hdparm ${PARAMS} /dev/$drive
-			deltext
-			ok
-		fi
-	done  
-	touch /var/lock/subsys/hdparm
-	;;
-    stop)	
-	rm -f /var/lock/subsys/hdparm
-	;;
-  status)
-	for drive in /dev/hd? ; do
-	  hdparm $drive
-	done
-	;;
-  restart|reload)
-	$0 stop
-	$0 start
-	;;
-  *)
-	echo "Usage: $0 {start|stop|status|restart|reload}"
-	exit 1
-esac
-
+DRIVES=`cut -c 22- < /proc/partitions | egrep -v -e"md|name"`
+for drive in $DRIVES; do
+	eval PARAMS=\${HDPARM_${drive}}
+	if [ -n "${PARAMS}" ] ; then
+		show "Setting parameters for drive %s" "$drive"
+		busy
+		/sbin/hdparm ${PARAMS} /dev/$drive
+		deltext
+		ok
+	fi
+done  
 exit 0
