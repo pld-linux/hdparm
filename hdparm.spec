@@ -8,17 +8,16 @@ Summary(ru):	Утилита для показа/настройки параметров жестких дисков
 Summary(tr):	(E)IDE sabit disklerle ilgili bazЩ parametreleri deПiЧtirir
 Summary(uk):	Утил╕та для показу/установки параметр╕в жорстких диск╕в
 Name:		hdparm
-Version:	5.4
+Version:	5.5
 Release:	1
 License:	BSD
 Group:		Applications/System
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/hardware/%{name}-%{version}.tar.gz
-# Source0-md5:	d6c11d0e7a6b80704cb79970086ea787
+# Source0-md5:	b3d65aa96d93fc08bc807fd1d9497c21
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.8.pl
 Patch0:		%{name}-man-patch
-Patch1:		%{name}-scsi-cdrom.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sbindir	/sbin
@@ -75,7 +74,6 @@ daha az gЭГ harcamak iГin kullanabilirsiniz.
 %prep
 %setup  -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__make} \
@@ -85,7 +83,8 @@ daha az gЭГ harcamak iГin kullanabilirsiniz.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{{%{_sbindir},%{_mandir}/{man8,pl/man8}},%{_sysconfdir}/{sysconfig,rc.d/init.d}}
+install -d $RPM_BUILD_ROOT{%{_sbindir},%{_mandir}/{man8,pl/man8}} \
+	$RPM_BUILD_ROOT%{_sysconfdir}/{sysconfig,rc.d/init.d}
 
 install hdparm $RPM_BUILD_ROOT%{_sbindir}
 install hdparm.8 $RPM_BUILD_ROOT%{_mandir}/man8
