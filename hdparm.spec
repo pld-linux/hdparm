@@ -10,7 +10,7 @@ Copyright:	distributable
 Group:		Utilities/System
 Group(pl):	Narzêdzia/System
 Source:		ftp://sunsite.unc.edu/pub/Linux/system/hardware/%{name}-%{version}.tar.gz
-Patch0:		hdparm-optflags.diff
+Patch0:		hdparm-optflags.patch
 Buildroot:	/tmp/%{name}-%{version}-root
 
 %description
