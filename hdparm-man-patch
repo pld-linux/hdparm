@@ -1,6 +1,6 @@
---- hdparm-4.6/hdparm.8.old	Tue Dec 18 22:48:23 2001
-+++ hdparm-4.6/hdparm.8	Tue Dec 18 22:54:59 2001
-@@ -67,7 +67,9 @@
+--- hdparm-5.3/hdparm.8.orig	Sun Nov 24 23:54:29 2002
++++ hdparm-5.3/hdparm.8	Wed Nov 27 12:45:18 2002
+@@ -68,7 +68,9 @@
  .B sleeping
  (lowest power mode, drive is completely shut down).
  The
@@ -11,28 +11,7 @@
  and
  .B -Z
  flags can be used to manipulate the IDE power modes.
-@@ -164,16 +166,17 @@
- .TP
- .I -L
- Set the drive's doorlock flag.  Setting this to
--.b 1
-+.B 1
- will lock the door mechanism of some removeable hard drives
- (eg. Syquest, ZIP, Jazz..), and setting it to
--.b 0 will unlock the door mechanism.  Normally, Linux
-+.B 0
-+will unlock the door mechanism.  Normally, Linux
- maintains the door locking mechanism automatically, depending on drive usage
- (locked whenever a filesystem is mounted).  But on system shutdown, this can
- be a nuisance if the root partition is on a removeable disk, since the root
- partition is left mounted (read-only) after shutdown.  So, by using this
- command to unlock the door
--.b after
-+.B after
- the root filesystem is remounted read-only, one can then remove the cartridge
- from the drive after shutdown.
- .TP
-@@ -198,8 +201,8 @@
+@@ -210,8 +212,8 @@
  flag can be used to find the maximum setting supported by an installed drive
  (look for MaxMultSect in the output).
  Some drives claim to support multiple mode, but lose data at some settings.
@@ -41,9 +20,9 @@
 +Under rare circumstances, such failures can result in \fBmassive filesystem
 +corruption\fP.
  .TP
- .I -n
- Get or set the "ignore write errors" flag in the driver.
-@@ -309,8 +312,7 @@
+ .I -M
+ Get/set Automatic Acoustic Management (AAM) setting. Most modern harddisk drives 
+@@ -334,8 +336,7 @@
  .B Use this feature with caution:
  some drive/controller combinations do
  not tolerate the increased I/O latencies possible when this feature is enabled,
@@ -53,7 +32,7 @@
  In particular,
  .B CMD-640B
  and
-@@ -368,7 +370,7 @@
+@@ -398,7 +399,7 @@
  On drives which support alternate transfer modes,
  .I -X
  can be used to switch the mode of the drive
