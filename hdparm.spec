@@ -14,6 +14,7 @@ Source1:	hdparm.init
 Source2:	hdparm.sysconfig
 Patch0:		hdparm-optflags.patch
 Patch1:		hdparm-sparc.patch
+Patch2:		http://www.kernel.org/pub/linux/kernel/people/hedrick/utility-patches/%{name}-%{version}a.patch.gz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -46,6 +47,7 @@ harcamak için kullanabilirsiniz.
 %setup  -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p0
 
 %build
 make OPTFLAGS="$RPM_OPT_FLAGS"
