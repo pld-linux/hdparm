@@ -24,7 +24,7 @@ case "$1" in
 		if [ -n "${PARAMS}" ] ; then
 			show "Setting $drive parameters"
 			busy
-			/sbin/hdparm ${PARAMS} $drive
+			/sbin/hdparm ${PARAMS} /dev/$drive
 			deltext
 			ok
 		fi
