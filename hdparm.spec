@@ -1,12 +1,12 @@
 Summary:	Utility for setting (E)IDE performance parameters
 Summary(de):	Dienstprogramm zum Einstellen von (E)IDE-Parametern
-Summary(fr):	Utilitaire pour ajuster les paramétres de performances des unités (E)IDE.
+Summary(fr):	Utilitaire pour ajuster les paramétres de performances des unités (E)IDE
 Summary(pl):	Narzêdzie do ustawiania parametrow (E)IDE
 Summary(tr):	(E)IDE sabit disklerle ilgili bazý parametreleri deðiþtirir
 Name:		hdparm
 Version:	3.9
 Release:	2
-Copyright:	distributable
+LIcense:	distributable
 Group:		Utilities/System
 Group(pl):	Narzêdzia/System
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/hardware/%{name}-%{version}.tar.gz
@@ -18,7 +18,7 @@ Patch2:		http://www.kernel.org/pub/linux/kernel/people/hedrick/utility-patches/%
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-This is a utility for setting Hard Drive parameters.  It is useful for
+This is a utility for setting Hard Drive parameters. It is useful for
 tweaking performance and for doing things like spinning down hard drives to
 conserve power.
 
