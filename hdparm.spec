@@ -9,7 +9,7 @@ Summary(tr):	(E)IDE sabit disklerle ilgili bazЩ parametreleri deПiЧtirir
 Summary(uk):	Утил╕та для показу/установки параметр╕в жорстких диск╕в
 Name:		hdparm
 Version:	5.5
-Release:	1
+Release:	2
 License:	BSD
 Group:		Applications/System
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/hardware/%{name}-%{version}.tar.gz
