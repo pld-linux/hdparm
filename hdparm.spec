@@ -8,7 +8,7 @@ Summary(ru):	Утилита для показа/настройки параметров жестких дисков
 Summary(tr):	(E)IDE sabit disklerle ilgili bazЩ parametreleri deПiЧtirir
 Summary(uk):	Утил╕та для показу/установки параметр╕в жорстких диск╕в
 Name:		hdparm
-Version:	4.9
+Version:	5.1
 Release:	1
 License:	BSD
 Group:		Applications/System
@@ -90,14 +90,13 @@ install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/rc.hdparm
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/hdparm
 install %{SOURCE3} $RPM_BUILD_ROOT%{_mandir}/pl/man8/hdparm.8
 
-gzip -9nf contrib/* Changelog
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz contrib
+%doc contrib/* Changelog
 %attr(755,root,root) %{_sbindir}/hdparm
 %attr(754,root,root) /etc/rc.d/rc.hdparm
 %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/hdparm
