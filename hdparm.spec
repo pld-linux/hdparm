@@ -6,7 +6,7 @@ Summary(pl):	Narzêdzie do ustawiania parametrow (E)IDE
 Summary(pt_BR):	Utilitário para ajustar parâmetros de performance (E)IDE
 Summary(tr):	(E)IDE sabit disklerle ilgili bazý parametreleri deðiþtirir
 Name:		hdparm
-Version:	4.8
+Version:	4.9
 Release:	1
 License:	BSD
 Group:		Applications/System
