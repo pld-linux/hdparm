@@ -5,7 +5,7 @@ Summary(pl):	Narzêdzie do ustawiania parametrow (E)IDE
 Summary(tr):	(E)IDE sabit disklerle ilgili bazý parametreleri deðiþtirir
 Name:		hdparm
 Version:	3.6
-Release:	1
+Release:	2
 Copyright:	distributable
 Group:		Utilities/System
 Group(pl):	Narzêdzia/System
@@ -13,25 +13,26 @@ Source0:	ftp://sunsite.unc.edu/pub/Linux/system/hardware/%{name}-%{version}.tar.
 Source1:	hdparm.init
 Source2:	hdparm.sysconfig
 Patch0:		hdparm-optflags.patch
+Patch1:		hdparm-sparc.patch
 PreReq:		/sbin/chkconfig
 Buildroot:	/tmp/%{name}-%{version}-root
 
 %description
 This is a utility for setting Hard Drive parameters.  It is useful for
-tweaking performance and for doing things like spinning down hard drives
-to conserve power.
+tweaking performance and for doing things like spinning down hard drives to
+conserve power.
 
 %description -l de
-Dies ist ein Utility zum Einstellen der Festplatten-Parameter, nützlich zum 
-Feintunen der Leistung und zum Verlangsamen der Drehgeschwindigkeit, wenn 
-Strom gespart werden soll. 
+Dies ist ein Utility zum Einstellen der Festplatten-Parameter, nützlich zum
+Feintunen der Leistung und zum Verlangsamen der Drehgeschwindigkeit, wenn
+Strom gespart werden soll.
 
 %description -l fr
 Utilitaire pour configurer les paramêtres du disque dur. Utile pour
 améliorer les performances et pour ralentir les disques durs afin
 d'économiser l'énergie.
 
-description -l pl
+%description -l pl
 Pakiet ten zawiera program pozwalaj±cy manipulowaæ ró¿nymi parametrami
 dysków (E)IDE i SCSI. Przydaje siê, gdy chcemy polepszyæ wydajno¶æ naszego
 dysku (E)IDE (na przyklad opcje -u, -d), zatrzymaæ aby nie zu¿ywa³ pr±du na
@@ -43,8 +44,9 @@ performansýný arttýrmak ya da örneðin disk hýzýný azaltarak daha az güç
 harcamak için kullanabilirsiniz.
 
 %prep
-%setup -q
+%setup  -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 make OPTFLAGS="$RPM_OPT_FLAGS"
@@ -74,7 +76,7 @@ fi
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%defattr(644,root,root,0755)
+%defattr(644,root,root,755)
 %doc *.gz
 %attr(755,root,root) /sbin/hdparm
 %attr(754,root,root) /etc/rc.d/init.d/hdparm
