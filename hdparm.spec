@@ -76,8 +76,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,0755)
 %doc *.gz
 %attr(755,root,root) /sbin/hdparm
-%attr(755,root,root) /etc/rc.d/init.d/hdparm
-%config(noreplace) /etc/sysconfig/hdparm
+%attr(754,root,root) /etc/rc.d/init.d/hdparm
+%config(noreplace) %verify(not size mtime md5) /etc/sysconfig/hdparm
 /usr/man/man8/*
 
 %changelog
