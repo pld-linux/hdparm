@@ -6,9 +6,16 @@
 # Get service config
 [ -f /etc/sysconfig/hdparm ] && . /etc/sysconfig/hdparm
 
-DRIVES="`awk '!($NF ~ /md|name/) { print $NF }' /proc/partitions`"
+if [ -c /dev/.devfsd ]; then
+        # we have devfs enabled kernel
+        DRIVES=$(ls -1 /dev/hd* /dev/sd* 2> /dev/null | \
+		awk -F'/' ' ! /[0-9]$/ { print $3; }')
+else
+	DRIVES="`awk '!($NF ~ /md|name/) { print $NF }' /proc/partitions`"
+fi
+
 for drive in $DRIVES; do
-	eval PARAMS=\${HDPARM_${drive}}
+	eval PARAMS=\$HDPARM_${drive}
 	if [ -n "${PARAMS}" ] ; then
 		show "Setting parameters for drive %s" "$drive"
 		busy
