@@ -5,7 +5,7 @@ Summary(pl):	Narzêdzie do ustawiania parametrow (E)IDE
 Summary(tr):	(E)IDE sabit disklerle ilgili bazý parametreleri deðiþtirir
 Name:		hdparm
 Version:	3.9
-Release:	3
+Release:	4
 LIcense:	distributable
 Group:		Utilities/System
 Group(pl):	Narzêdzia/System
@@ -63,7 +63,7 @@ install hdparm.8 $RPM_BUILD_ROOT%{_mandir}/man8
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/rc.hdparm
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/hdparm
 
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* \
+gzip -9nf contrib/* \
 	Changelog
 
 %clean
@@ -72,6 +72,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc *.gz
+%doc contrib
 %attr(755,root,root) /sbin/hdparm
 %attr(754,root,root) /etc/rc.d/rc.hdparm
 %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/hdparm
