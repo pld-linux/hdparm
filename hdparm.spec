@@ -90,4 +90,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(754,root,root) /etc/rc.d/rc.hdparm
 %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/hdparm
 %{_mandir}/man8/*
-%{_mandir}/pl/man8/*
+%lang(pl) %{_mandir}/pl/man8/*
