@@ -331,11 +331,11 @@ zostanie zmodyfikowany o czynnik koryguj±cy oparty na wyniku
 Pobierz/ustaw flagê interrupt\-unmask napêdu. Ustawienie 
 .B 1
 zezwala sterownikowi na niemaskowanie innych przerwañ podczas przetwarzania
-przerwania dyskowego, co poprawia w du¿ej mierze odpowiadywalno¶æ Linuksa i
-eliminuje b³êdy "serial port overrun".
-.B U¿ywaj tej w³a¶ciwo¶ci z ostro¿no¶ci±:
+przerwania dyskowego, co w znacz±cym stopniu zmniejsza czas reakcji na
+Linuksa na polecenia u¿ytkownika i eliminuje b³êdy "serial port overrun".
+.B U¿ywaj±c tej opcji nle¿y zachowaæ ostro¿no¶æ:
 niektóre kombinacje napêdu/kontrolera nie radz± sobie dobrze z t±
-w³±¶ciwo¶ci±, co mo¿e spowodowaæ
+w³a¶ciwo¶ci±, co mo¿e spowodowaæ
 \fBpowa¿ne uszkodzenie systemu plików\fP.
 Praktycznie, interfejsy
 .B CMD\-640B
