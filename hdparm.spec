@@ -15,7 +15,7 @@ Source2:	hdparm.sysconfig
 Patch0:		hdparm-optflags.patch
 Patch1:		hdparm-sparc.patch
 PreReq:		/sbin/chkconfig
-Buildroot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 This is a utility for setting Hard Drive parameters.  It is useful for
