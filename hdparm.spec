@@ -53,12 +53,12 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/{{sbin,usr/man/man8},etc/{sysconfig,rc.d/init.d}}
 
 install -s hdparm $RPM_BUILD_ROOT/sbin
-install hdparm.8 $RPM_BUILD_ROOT/usr/man/man8
+install hdparm.8 $RPM_BUILD_ROOT%{_mandir}/man8
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/hdparm
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/hdparm
 
-gzip -9nf $RPM_BUILD_ROOT/usr/man/man*/* \
+gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* \
 	Changelog
 
 %post
@@ -78,7 +78,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /sbin/hdparm
 %attr(754,root,root) /etc/rc.d/init.d/hdparm
 %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/hdparm
-/usr/man/man8/*
+%{_mandir}/man8/*
 
 %changelog
 * Fri Apr 23 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
