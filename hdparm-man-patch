@@ -1,6 +1,6 @@
---- hdparm.8.old	Fri Mar  2 21:43:30 2001
-+++ hdparm.8	Mon Sep 10 02:41:57 2001
-@@ -64,7 +64,9 @@
+--- hdparm.8.old	Tue Dec 18 22:48:23 2001
++++ hdparm.8	Tue Dec 18 22:54:59 2001
+@@ -67,7 +67,9 @@
  .B sleeping
  (lowest power mode, drive is completely shut down).
  The
@@ -11,7 +11,7 @@
  and
  .B -Z
  flags can be used to manipulate the IDE power modes.
-@@ -160,16 +162,17 @@
+@@ -164,16 +166,17 @@
  .TP
  .I -L
  Set the drive's doorlock flag.  Setting this to
@@ -27,12 +27,13 @@
  be a nuisance if the root partition is on a removeable disk, since the root
  partition is left mounted (read-only) after shutdown.  So, by using this
  command to unlock the door
---b after
+-.b after
 +.B after
  the root filesystem is remounted read-only, one can then remove the cartridge
  from the drive after shutdown.
  .TP
-@@ -195,7 +198,7 @@
+@@ -198,8 +201,8 @@
+ flag can be used to find the maximum setting supported by an installed drive
  (look for MaxMultSect in the output).
  Some drives claim to support multiple mode, but lose data at some settings.
 -Under rare circumstances, such failures can result in
@@ -42,7 +43,8 @@
  .TP
  .I -n
  Get or set the "ignore write errors" flag in the driver.
-@@ -306,7 +309,6 @@
+@@ -309,8 +312,7 @@
+ .B Use this feature with caution:
  some drive/controller combinations do
  not tolerate the increased I/O latencies possible when this feature is enabled,
 -resulting in
@@ -51,7 +53,7 @@
  In particular,
  .B CMD-640B
  and
-@@ -364,7 +366,7 @@
+@@ -368,7 +370,7 @@
  On drives which support alternate transfer modes,
  .I -X
  can be used to switch the mode of the drive
