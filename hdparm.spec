@@ -14,6 +14,7 @@ License:	BSD
 Group:		Applications/System
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/hardware/%{name}-%{version}.tar.gz
 # Source0-md5:	1bfb16ac78ca4af8b3e4e3b9fab28743
+# Source0-size:	38638
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.8.pl
