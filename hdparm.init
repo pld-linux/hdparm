@@ -6,7 +6,7 @@
 # Get service config
 [ -f /etc/sysconfig/hdparm ] && . /etc/sysconfig/hdparm
 
-DRIVES=`cut -c 22- < /proc/partitions | egrep -v -e"md|name"`
+DRIVES=`awk '{ print $NF }' /proc/partitions | egrep -v -e"md|name"`
 for drive in $DRIVES; do
 	eval PARAMS=\${HDPARM_${drive}}
 	if [ -n "${PARAMS}" ] ; then
