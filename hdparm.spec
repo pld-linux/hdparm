@@ -1,17 +1,17 @@
-Summary:     Utility for setting (E)IDE performance parameters
-Name:        hdparm
-Version:     3.5
-Release:     1
-Copyright:   distributable
-Group:       Utilities/System
-Group(pl):   Narzêdzia/System
-Source:      ftp://sunsite.unc.edu/pub/Linux/system/hardware/%{name}-%{version}.tar.gz
-Patch0:      hdparm-optflags.diff
-Buildroot:   /tmp/buildroot-%{name}-%{version}
-Summary(de): Dienstprogramm zum Einstellen von (E)IDE-Parametern
-Summary(fr): Utilitaire pour ajuster les paramétres de performances des unités (E)IDE.
-Summary(pl): Narzêdzie do ustawiania parametrow (E)IDE
-Summary(tr): (E)IDE sabit disklerle ilgili bazý parametreleri deðiþtirir
+Summary:	Utility for setting (E)IDE performance parameters
+Summary(de):	Dienstprogramm zum Einstellen von (E)IDE-Parametern
+Summary(fr):	Utilitaire pour ajuster les paramétres de performances des unités (E)IDE.
+Summary(pl):	Narzêdzie do ustawiania parametrow (E)IDE
+Summary(tr):	(E)IDE sabit disklerle ilgili bazý parametreleri deðiþtirir
+Name:		hdparm
+Version:	3.5
+Release:	2
+Copyright:	distributable
+Group:		Utilities/System
+Group(pl):	Narzêdzia/System
+Source:		ftp://sunsite.unc.edu/pub/Linux/system/hardware/%{name}-%{version}.tar.gz
+Patch0:		hdparm-optflags.diff
+Buildroot:	/tmp/%{name}-%{version}-root
 
 %description
 This is a utility for setting Hard Drive parameters.  It is useful for
@@ -53,16 +53,17 @@ install -d $RPM_BUILD_ROOT/{sbin,usr/man/man8}
 install -s hdparm $RPM_BUILD_ROOT/sbin
 install hdparm.8 $RPM_BUILD_ROOT/usr/man/man8
 
-gzip -9nf $RPM_BUILD_ROOT/usr/man/man*/*
+gzip -9nf $RPM_BUILD_ROOT/usr/man/man*/* \
+	Changelog
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%defattr(0644, root, root, 0755)
-%doc hdparm.lsm Changelog
-%attr(0755, root, root) /sbin/hdparm
-%attr(0644, root,  man) /usr/man/man8/hdparm.8
+%defattr(0644,root,root,0755)
+%doc *.gz
+%attr(755,root,root) /sbin/hdparm
+/usr/man/man8/*
 
 %changelog
 * Thu Sep 24 1998 Krzysztof G. Baranowski <kgb@knm.org.pl>
