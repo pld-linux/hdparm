@@ -51,7 +51,7 @@ daha az güç harcamak için kullanabilirsiniz.
 %patch2 -p0
 
 %build
-make OPTFLAGS="$RPM_OPT_FLAGS"
+%{__make} OPTFLAGS="$RPM_OPT_FLAGS"
 
 %install
 rm -rf $RPM_BUILD_ROOT
