@@ -59,11 +59,19 @@ install $RPM_SOURCE_DIR/hdparm.sysconfig $RPM_BUILD_ROOT/etc/sysconfig/hdparm
 gzip -9nf $RPM_BUILD_ROOT/usr/man/man*/* \
 	Changelog
 
+%post
+/sbin/chkconfig --add hdparm
+
+%preun
+if [ "$1" = "0" ]; then
+	/sbin/chkconfig --del hdparm
+fi
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%defattr(0644,root,root,0755)
+%defattr(644,root,root,0755)
 %doc *.gz
 %attr(755,root,root) /sbin/hdparm
 %attr(755,root,root) /etc/rc.d/init.d/hdparm
@@ -71,8 +79,11 @@ rm -rf $RPM_BUILD_ROOT
 /usr/man/man8/*
 
 %changelog
-* Thu Apr 22 1999 Jacek Konieczny <jajcus@zeus.polsl.gliwice.pl>
+* Fri Apr 23 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [3.5-3]
+- added %preun, %post with {de}activation service on {un}install.
+
+* Thu Apr 22 1999 Jacek Konieczny <jajcus@zeus.polsl.gliwice.pl>
 - added init script  
 
 * Thu Sep 24 1998 Krzysztof G. Baranowski <kgb@knm.org.pl>
