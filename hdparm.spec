@@ -5,7 +5,7 @@ Summary(pl):	Narzêdzie do ustawiania parametrow (E)IDE
 Summary(tr):	(E)IDE sabit disklerle ilgili bazý parametreleri deðiþtirir
 Name:		hdparm
 Version:	3.5
-Release:	2
+Release:	3
 Copyright:	distributable
 Group:		Utilities/System
 Group(pl):	Narzêdzia/System
@@ -53,6 +53,10 @@ install -d $RPM_BUILD_ROOT/{sbin,usr/man/man8}
 install -s hdparm $RPM_BUILD_ROOT/sbin
 install hdparm.8 $RPM_BUILD_ROOT/usr/man/man8
 
+install -d $RPM_BUILD_ROOT/etc/{sysconfig,rc.d/init.d}
+install -m 644 $RPM_SOURCE_DIR/hdparm.init $RPM_BUILD_ROOT/etc/rc.d/init.d/hdparm
+install -m 644 $RPM_SOURCE_DIR/hdparm.sysconfig $RPM_BUILD_ROOT/etc/sysconfig/hdparm
+
 gzip -9nf $RPM_BUILD_ROOT/usr/man/man*/* \
 	Changelog
 
@@ -63,9 +67,15 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(0644,root,root,0755)
 %doc *.gz
 %attr(755,root,root) /sbin/hdparm
+%attr(755,root,root) /etc/rc.d/init.d/hdparm
+%config(noreplace) /etc/sysconfig/hdparm
 /usr/man/man8/*
 
 %changelog
+* Thu Apr 22 1999 Jacek Konieczny <jajcus@zeus.polsl.gliwice.pl>
+  [3.5-3]
+- added init script  
+
 * Thu Sep 24 1998 Krzysztof G. Baranowski <kgb@knm.org.pl>
   [3.3-3]
 - added pl transpation,
