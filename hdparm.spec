@@ -19,13 +19,13 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 This is a utility for setting Hard Drive parameters. It is useful for
-tweaking performance and for doing things like spinning down hard drives to
-conserve power.
+tweaking performance and for doing things like spinning down hard
+drives to conserve power.
 
 %description -l de
-Dies ist ein Utility zum Einstellen der Festplatten-Parameter, nützlich zum
-Feintunen der Leistung und zum Verlangsamen der Drehgeschwindigkeit, wenn
-Strom gespart werden soll.
+Dies ist ein Utility zum Einstellen der Festplatten-Parameter,
+nützlich zum Feintunen der Leistung und zum Verlangsamen der
+Drehgeschwindigkeit, wenn Strom gespart werden soll.
 
 %description -l fr
 Utilitaire pour configurer les paramêtres du disque dur. Utile pour
@@ -34,14 +34,15 @@ d'économiser l'énergie.
 
 %description -l pl
 Pakiet ten zawiera program pozwalaj±cy manipulowaæ ró¿nymi parametrami
-dysków (E)IDE i SCSI. Przydaje siê, gdy chcemy polepszyæ wydajno¶æ naszego
-dysku (E)IDE (na przyklad opcje -u, -d), zatrzymaæ aby nie zu¿ywa³ pr±du na
-laptopie, itd. Proszê zapoznaæ siê ze stron± manuala przed u¿yciem hdparma.
+dysków (E)IDE i SCSI. Przydaje siê, gdy chcemy polepszyæ wydajno¶æ
+naszego dysku (E)IDE (na przyklad opcje -u, -d), zatrzymaæ aby nie
+zu¿ywa³ pr±du na laptopie, itd. Proszê zapoznaæ siê ze stron± manuala
+przed u¿yciem hdparma.
 
 %description -l tr
-Bu program ile sabit disk parametrelerini deðiþtirebilirsiniz. Sistemin
-performansýný arttýrmak ya da örneðin disk hýzýný azaltarak daha az güç
-harcamak için kullanabilirsiniz.
+Bu program ile sabit disk parametrelerini deðiþtirebilirsiniz.
+Sistemin performansýný arttýrmak ya da örneðin disk hýzýný azaltarak
+daha az güç harcamak için kullanabilirsiniz.
 
 %prep
 %setup  -q
