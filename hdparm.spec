@@ -46,7 +46,7 @@ d'économiser l'énergie.
 %description -l pl
 Pakiet ten zawiera program pozwalaj±cy manipulowaæ ró¿nymi parametrami
 dysków (E)IDE i SCSI. Przydaje siê, gdy chcemy polepszyæ wydajno¶æ
-naszego dysku (E)IDE (na przyklad opcje -u, -d), zatrzymaæ aby nie
+naszego dysku (E)IDE (na przyk³ad opcje -u, -d), zatrzymaæ aby nie
 zu¿ywa³ pr±du na laptopie, itd. Proszê zapoznaæ siê ze stron± manuala
 przed u¿yciem hdparma.
 
