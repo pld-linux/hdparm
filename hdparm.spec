@@ -4,8 +4,8 @@ Summary(fr):	Utilitaire pour ajuster les paramétres de performances des unités (
 Summary(pl):	Narzêdzie do ustawiania parametrow (E)IDE
 Summary(tr):	(E)IDE sabit disklerle ilgili bazý parametreleri deðiþtirir
 Name:		hdparm
-Version:	3.5
-Release:	5
+Version:	3.6
+Release:	1
 Copyright:	distributable
 Group:		Utilities/System
 Group(pl):	Narzêdzia/System
