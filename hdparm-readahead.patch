@@ -5,7 +5,7 @@
  static int do_ctimings, do_timings = 0;
  
 -static unsigned long set_readahead= 0, get_readahead= 0, readahead= 0;     
-+static unsigned long set_readahead= 0, get_readahead= 0, reada_head= 0;     
++static unsigned long set_readahead= 0, get_readahead= 0, read_ahead= 0;     
  static unsigned long set_readonly = 0, get_readonly = 0, readonly = 0;
  static unsigned long set_unmask   = 0, get_unmask   = 0, unmask   = 0;     
  static unsigned long set_mult     = 0, get_mult     = 0, mult     = 0;     
@@ -15,8 +15,8 @@
  		if (get_readahead)
 -			printf(" setting fs readahead to %ld\n", readahead);
 -		if (ioctl(fd, BLKRASET, readahead)) 
-+			printf(" setting fs readahead to %ld\n", reada_head);
-+		if (ioctl(fd, BLKRASET, reada_head)) 
++			printf(" setting fs readahead to %ld\n", read_ahead);
++		if (ioctl(fd, BLKRASET, read_ahead)) 
  			perror(" BLKRASET failed");
  	}
  #ifdef HDIO_UNREGISTER_HWIF
@@ -25,7 +25,7 @@
  						get_readahead = noisy;
  						noisy = 1;
 -						GET_NUMBER(set_readahead,readahead);
-+						GET_NUMBER(set_readahead,reada_head);
++						GET_NUMBER(set_readahead,read_ahead);
  						break;
  					case 'B':
  						get_apmmode = noisy;
