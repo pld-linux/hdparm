@@ -43,7 +43,7 @@ harcamak için kullanabilirsiniz.
 %patch0 -p1
 
 %build
-make OPTFLAGS=$RPM_OPT_FLAGS
+make OPTFLAGS="$RPM_OPT_FLAGS"
 
 %install
 rm -rf $RPM_BUILD_ROOT
