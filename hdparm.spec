@@ -4,7 +4,9 @@ Summary(de):	Dienstprogramm zum Einstellen von (E)IDE-Parametern
 Summary(fr):	Utilitaire pour ajuster les paramИtres de performances des unitИs (E)IDE
 Summary(pl):	NarzЙdzie do ustawiania parametrow (E)IDE
 Summary(pt_BR):	UtilitАrio para ajustar parБmetros de performance (E)IDE
+Summary(ru):	Утилита для показа/настройки параметров жестких дисков
 Summary(tr):	(E)IDE sabit disklerle ilgili bazЩ parametreleri deПiЧtirir
+Summary(uk):	Утил╕та для показу/установки параметр╕в жорстких диск╕в
 Name:		hdparm
 Version:	4.9
 Release:	1
@@ -51,10 +53,22 @@ Este И um utilitАrio para ajustar parБmetros do disco rМgido. Ele И
 Зtil para melhorar a performance e para fazer coisas como diminuir a
 rotaГЦo do disco para conservar energia.
 
+%description -l ru
+Это полезная системная утилита для установки параметров жестких дисков
+(E)IDE. Например, hdparm можно использовать для настройки
+производительности и для остановки вращения дисков с целью экономии
+энергии.
+
 %description -l tr
 Bu program ile sabit disk parametrelerini deПiЧtirebilirsiniz.
 Sistemin performansЩnЩ arttЩrmak ya da ЖrneПin disk hЩzЩnЩ azaltarak
 daha az gЭГ harcamak iГin kullanabilirsiniz.
+
+%description -l uk
+Це корисна системна утил╕та для установки параметр╕в жорстких диск╕в
+(E)IDE. Наприклад, hdparm можна використовувати для настройки
+швидкост╕ обм╕ну даними ╕ для зупинки обертання диск╕в з метою
+збереження енерг╕╖.
 
 %prep
 %setup  -q
