@@ -80,38 +80,3 @@ rm -rf $RPM_BUILD_ROOT
 %attr(754,root,root) /etc/rc.d/init.d/hdparm
 %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/hdparm
 %{_mandir}/man8/*
-
-%changelog
-* Sat May 29 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [3.5-5]
-- now package is FHS 2.0 compliant,
-- more rpm macros.
-
-* Fri Apr 23 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [3.5-3]
-- added %preun, %post with {de}activation service on {un}install.
-
-* Thu Apr 22 1999 Jacek Konieczny <jajcus@zeus.polsl.gliwice.pl>
-- added init script  
-
-* Thu Sep 24 1998 Krzysztof G. Baranowski <kgb@knm.org.pl>
-  [3.3-3]
-- added pl transpation,
-- added patch (hdparm-optflags.diff) for using $RPM_OPT_FLAGS during
-  compile,
-- changed Buildroot to /tmp/%%{name}-%%{version}-root,
-- added using %%{name} and %%{version} in Source,
-- spec rewrited for building package from non-root account.
-
-* Fri Apr 24 1998 Prospector System <bugs@redhat.com>
-- translations modified for de, fr, tr
-
-* Wed Apr 08 1998 Erik Troan <ewt@redhat.com>
-- updated to 3.3
-- build rooted
-
-* Fri Oct 31 1997 Donnie Barnes <djb@redhat.com>
-- fixed spelling error in summary
-
-* Mon Jun 02 1997 Erik Troan <ewt@redhat.com>
-- built against glibc
