@@ -9,7 +9,7 @@ Summary(tr):	(E)IDE sabit disklerle ilgili bazЩ parametreleri deПiЧtirir
 Summary(uk):	Утил╕та для показу/установки параметр╕в жорстких диск╕в
 Name:		hdparm
 Version:	5.2
-Release:	2
+Release:	3
 License:	BSD
 Group:		Applications/System
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/hardware/%{name}-%{version}.tar.gz
@@ -86,6 +86,8 @@ install -d $RPM_BUILD_ROOT{{%{_sbindir},%{_mandir}/{man8,pl/man8}},%{_sysconfdir
 
 install hdparm $RPM_BUILD_ROOT%{_sbindir}
 install hdparm.8 $RPM_BUILD_ROOT%{_mandir}/man8
+install contrib/idectl $RPM_BUILD_ROOT%{_sbindir}
+install contrib/ultrabayd $RPM_BUILD_ROOT%{_sbindir}
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/rc.hdparm
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/hdparm
@@ -96,8 +98,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc contrib/* Changelog README.acoustic
+%doc contrib/README Changelog README.acoustic
 %attr(755,root,root) %{_sbindir}/hdparm
+%attr(755,root,root) %{_sbindir}/idectl
+%attr(755,root,root) %{_sbindir}/ultrabayd
 %attr(754,root,root) /etc/rc.d/rc.hdparm
 %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/hdparm
 %{_mandir}/man8/*
