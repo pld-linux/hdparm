@@ -6,15 +6,50 @@
 # Get service config
 [ -f /etc/sysconfig/hdparm ] && . /etc/sysconfig/hdparm
 
-if [ -c /dev/.devfsd ]; then
-        # we have devfs enabled kernel
-        DRIVES=$(ls -1 /dev/hd* /dev/sd* 2> /dev/null | \
-		awk -F'/' ' ! /[0-9]$/ { print $3; }')
-else
-	DRIVES="`awk '!($NF ~ /md|name/) { print $NF }' /proc/partitions`"
-fi
-
-for drive in $DRIVES; do
+while read major minor blocks name ; do
+    if [ "$minor" = "0" -o "$minor" = "64" ] ; then
+	case "$major" in
+	    3)
+		[ $minor = 0 ] && drive="hda"
+		[ $minor = 64 ] && drive="hdb"
+	    ;;
+	    22)
+		[ $minor = 0 ] && drive="hdc"
+		[ $minor = 64 ] && drive="hdd"
+	    ;;
+	    33)
+		[ $minor = 0 ] && drive="hde"
+		[ $minor = 64 ] && drive="hdf"
+	    ;;
+	    34)
+		[ $minor = 0 ] && drive="hdg"
+		[ $minor = 64 ] && drive="hdh"
+	    ;;
+	    56)
+		[ $minor = 0 ] && drive="hdi"
+		[ $minor = 64 ] && drive="hdj"
+	    ;;
+	    57)
+		[ $minor = 0 ] && drive="hdk"
+		[ $minor = 64 ] && drive="hdl"
+	    ;;
+	    88)
+		[ $minor = 0 ] && drive="hdm"
+		[ $minor = 64 ] && drive="hdn"
+	    ;;
+	    89)
+		[ $minor = 0 ] && drive="hdo"
+		[ $minor = 64 ] && drive="hdp"
+	    ;;
+	    90)
+		[ $minor = 0 ] && drive="hdq"
+		[ $minor = 64 ] && drive="hdr"
+	    ;;
+	    91)
+		[ $minor = 0 ] && drive="hds"
+		[ $minor = 64 ] && drive="hdt"
+	    ;;
+	esac
 	eval PARAMS=\$HDPARM_${drive}
 	if [ -n "${PARAMS}" ] ; then
 		show "Setting parameters for drive %s" "$drive"
@@ -23,5 +58,6 @@ for drive in $DRIVES; do
 		deltext
 		ok
 	fi
-done  
+    fi
+done < /proc/partitions
 exit 0
