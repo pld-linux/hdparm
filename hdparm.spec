@@ -1,7 +1,7 @@
 Summary:     Utility for setting (E)IDE performance parameters
 Summary(de): Dienstprogramm zum Einstellen von (E)IDE-Parametern
 Summary(fr): Utilitaire pour ajuster les paramétres de performances des unités (E)IDE.
-Summary(pl): Narzedzie do ustawiania parametrow (E)IDE
+Summary(pl): Narzêdzie do ustawiania parametrow (E)IDE
 Summary(tr): (E)IDE sabit disklerle ilgili bazý parametreleri deðiþtirir
 Name:        hdparm
 Version:     3.3
