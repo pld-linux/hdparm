@@ -50,7 +50,7 @@ make OPTFLAGS="$RPM_OPT_FLAGS"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{{sbin,usr/man/man8},etc/{sysconfig,rc.d/init.d}}
+install -d $RPM_BUILD_ROOT{{/sbin,%{_mandir}/man8},/etc/{sysconfig,rc.d/init.d}}
 
 install -s hdparm $RPM_BUILD_ROOT/sbin
 install hdparm.8 $RPM_BUILD_ROOT%{_mandir}/man8
@@ -81,6 +81,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/*
 
 %changelog
+* Sat May 29 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [3.5-5]
+- now package is FHS 2.0 compliant,
+- more rpm macros.
+
 * Fri Apr 23 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [3.5-3]
 - added %preun, %post with {de}activation service on {un}install.
