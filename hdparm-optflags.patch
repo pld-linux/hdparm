@@ -1,10 +1,7 @@
-diff -urN hdparm-3.1-orig/Makefile hdparm-3.1/Makefile
---- hdparm-3.1-orig/Makefile	Sat Jul 27 19:07:17 1996
-+++ hdparm-3.1/Makefile	Thu Sep 24 12:32:32 1998
-@@ -1,9 +1,10 @@
- # Makefile for hdparm
-+OPTFLAGS = -O2
-  
+diff -ru hdparm-3.6/Makefile hdparm-3.6.AX/Makefile
+--- hdparm-3.6/Makefile	Fri Oct 15 14:59:00 1999
++++ hdparm-3.6.AX/Makefile	Sat Dec 25 14:10:45 1999
+@@ -9,7 +9,7 @@
  all: hdparm
  
  hdparm: hdparm.c /usr/include/linux/hdreg.h
@@ -12,4 +9,4 @@ diff -urN hdparm-3.1-orig/Makefile hdparm-3.1/Makefile
 +	gcc -Wall -Wstrict-prototypes $(OPTFLAGS) -o hdparm hdparm.c
   
  install: all hdparm.8
- 	if [ -f /usr/sbin/hdparm ]; then rm -f /usr/sbin/hdparm ; fi 
+ 	if [ -f $(destdir)/usr/sbin/hdparm ]; then rm -f $(destdir)/usr/sbin/hdparm ; fi 
