@@ -1,0 +1,62 @@
+--- hdparm.8.old	Fri Mar  2 21:43:30 2001
++++ hdparm.8	Mon Sep 10 02:41:57 2001
+@@ -64,7 +64,9 @@
+ .B sleeping
+ (lowest power mode, drive is completely shut down).
+ The
+-.B -S, -y, -Y,
++.BR -S ,
++.BR -y ,
++.BR -Y ,
+ and
+ .B -Z
+ flags can be used to manipulate the IDE power modes.
+@@ -160,16 +162,17 @@
+ .TP
+ .I -L
+ Set the drive's doorlock flag.  Setting this to
+-.b 1
++.B 1
+ will lock the door mechanism of some removeable hard drives
+ (eg. Syquest, ZIP, Jazz..), and setting it to
+-.b 0 will unlock the door mechanism.  Normally, Linux
++.B 0
++will unlock the door mechanism.  Normally, Linux
+ maintains the door locking mechanism automatically, depending on drive usage
+ (locked whenever a filesystem is mounted).  But on system shutdown, this can
+ be a nuisance if the root partition is on a removeable disk, since the root
+ partition is left mounted (read-only) after shutdown.  So, by using this
+ command to unlock the door
+--b after
++.B after
+ the root filesystem is remounted read-only, one can then remove the cartridge
+ from the drive after shutdown.
+ .TP
+@@ -195,7 +198,7 @@
+ (look for MaxMultSect in the output).
+ Some drives claim to support multiple mode, but lose data at some settings.
+-Under rare circumstances, such failures can result in
+-.B massive filesystem corruption.
++Under rare circumstances, such failures can result in \fBmassive filesystem
++corruption\fP.
+ .TP
+ .I -n
+ Get or set the "ignore write errors" flag in the driver.
+@@ -306,7 +309,6 @@
+ some drive/controller combinations do
+ not tolerate the increased I/O latencies possible when this feature is enabled,
+-resulting in
+-.B massive filesystem corruption.
++resulting in \fB massive filesystem corruption\fP.
+ In particular,
+ .B CMD-640B
+ and
+@@ -364,7 +366,7 @@
+ On drives which support alternate transfer modes,
+ .I -X
+ can be used to switch the mode of the drive
+-.I only.
++.IR only .
+ Prior to changing the transfer mode, the IDE interface should be jumpered
+ or programmed (see
+ .I -p
