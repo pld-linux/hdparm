@@ -18,6 +18,7 @@ Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.8.pl
 Patch0:		%{name}-man-patch
+Patch1:		%{name}-readahead.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sbindir	/sbin
@@ -74,6 +75,7 @@ daha az güç harcamak için kullanabilirsiniz.
 %prep
 %setup  -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__make} \
