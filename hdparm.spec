@@ -19,6 +19,7 @@ Source2:	%{name}.sysconfig
 Source3:	%{name}.8.pl
 Patch0:		%{name}-man-patch
 Patch1:		%{name}-readahead.patch
+URL:		http://www.ibiblio.org/pub/Linux/system/hardware/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sbindir	/sbin
