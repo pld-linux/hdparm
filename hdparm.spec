@@ -6,8 +6,8 @@ Summary(pl):	Narzêdzie do ustawiania parametrow (E)IDE
 Summary(pt_BR):	Utilitário para ajustar parâmetros de performance (E)IDE
 Summary(tr):	(E)IDE sabit disklerle ilgili bazý parametreleri deðiþtirir
 Name:		hdparm
-Version:	4.1
-Release:	5
+Version:	4.6
+Release:	1
 License:	BSD
 Group:		Applications/System
 Group(de):	Applikationen/System
@@ -16,9 +16,7 @@ Source0:	ftp://sunsite.unc.edu/pub/Linux/system/hardware/%{name}-%{version}.tar.
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	hdparm.8.pl
-Patch0:		%{name}-optflags.patch
-Patch1:		%{name}-%{version}-man-patch
-Patch2:		%{name}-cpp_macros.patch
+Patch0:		%{name}-man-patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sbindir	/sbin
@@ -62,12 +60,12 @@ daha az güç harcamak için kullanabilirsiniz.
 
 %prep
 %setup  -q
-%patch0 -p1
-%patch1 -p0
-%patch2 -p1
+#%patch0 -p1
 
 %build
-%{__make} OPTFLAGS="%{rpmcflags}"
+%{__make} \
+	CC="%{__cc}" \
+	CFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
