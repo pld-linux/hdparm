@@ -9,7 +9,7 @@ Summary(tr):	(E)IDE sabit disklerle ilgili bazЩ parametreleri deПiЧtirir
 Summary(uk):	Утил╕та для показу/установки параметр╕в жорстких диск╕в
 Name:		hdparm
 Version:	5.2
-Release:	3
+Release:	4
 License:	BSD
 Group:		Applications/System
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/hardware/%{name}-%{version}.tar.gz
@@ -17,6 +17,7 @@ Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.8.pl
 Patch0:		%{name}-man-patch
+Patch1:		%{name}-scsi-cdrom.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sbindir	/sbin
@@ -73,6 +74,7 @@ daha az gЭГ harcamak iГin kullanabilirsiniz.
 %prep
 %setup  -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__make} \
