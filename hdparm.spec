@@ -1,11 +1,13 @@
 Summary:	Utility for setting (E)IDE performance parameters
+Summary(es):	Utilitario para ajustar parámetros de desempeño (E)IDE
 Summary(de):	Dienstprogramm zum Einstellen von (E)IDE-Parametern
 Summary(fr):	Utilitaire pour ajuster les paramétres de performances des unités (E)IDE
 Summary(pl):	Narzêdzie do ustawiania parametrow (E)IDE
+Summary(pt_BR):	Utilitário para ajustar parâmetros de performance (E)IDE
 Summary(tr):	(E)IDE sabit disklerle ilgili bazý parametreleri deðiþtirir
 Name:		hdparm
 Version:	4.1
-Release:	2
+Release:	3
 License:	BSD
 Group:		Applications/System
 Group(de):	Applikationen/System
@@ -16,6 +18,8 @@ Source2:	%{name}.sysconfig
 Patch0:		%{name}-optflags.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define		_sbindir	/sbin
+
 %description
 This is a utility for setting Hard Drive parameters. It is useful for
 tweaking performance and for doing things like spinning down hard
@@ -25,6 +29,11 @@ drives to conserve power.
 Dies ist ein Utility zum Einstellen der Festplatten-Parameter,
 nützlich zum Feintunen der Leistung und zum Verlangsamen der
 Drehgeschwindigkeit, wenn Strom gespart werden soll.
+
+%description -l es
+Este es un utilitario para ajustar parámetros del disco duro. Es útil
+para mejorar el desempeño y para hacer cosas como diminuir la rotación
+del disco para conservar energía.
 
 %description -l fr
 Utilitaire pour configurer les paramêtres du disque dur. Utile pour
@@ -37,6 +46,11 @@ dysków (E)IDE i SCSI. Przydaje siê, gdy chcemy polepszyæ wydajno¶æ
 naszego dysku (E)IDE (na przyklad opcje -u, -d), zatrzymaæ aby nie
 zu¿ywa³ pr±du na laptopie, itd. Proszê zapoznaæ siê ze stron± manuala
 przed u¿yciem hdparma.
+
+%description -l pt_BR
+Este é um utilitário para ajustar parâmetros do disco rígido. Ele é
+útil para melhorar a performance e para fazer coisas como diminuir a
+rotação do disco para conservar energia.
 
 %description -l tr
 Bu program ile sabit disk parametrelerini deðiþtirebilirsiniz.
@@ -52,9 +66,9 @@ daha az güç harcamak için kullanabilirsiniz.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{{/sbin,%{_mandir}/man8},%{_sysconfdir}/{sysconfig,rc.d/init.d}}
+install -d $RPM_BUILD_ROOT{{%{_sbindir},%{_mandir}/man8},%{_sysconfdir}/{sysconfig,rc.d/init.d}}
 
-install hdparm $RPM_BUILD_ROOT/sbin
+install hdparm $RPM_BUILD_ROOT%{_sbindir}
 install hdparm.8 $RPM_BUILD_ROOT%{_mandir}/man8
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/rc.hdparm
@@ -68,7 +82,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc *.gz contrib
-%attr(755,root,root) /sbin/hdparm
+%attr(755,root,root) %{_sbindir}/hdparm
 %attr(754,root,root) /etc/rc.d/rc.hdparm
 %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/hdparm
 %{_mandir}/man8/*
