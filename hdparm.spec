@@ -5,7 +5,7 @@ Summary(pl):	Narzêdzie do ustawiania parametrow (E)IDE
 Summary(tr):	(E)IDE sabit disklerle ilgili bazý parametreleri deðiþtirir
 Name:		hdparm
 Version:	3.9
-Release:	1
+Release:	2
 Copyright:	distributable
 Group:		Utilities/System
 Group(pl):	Narzêdzia/System
@@ -14,7 +14,6 @@ Source1:	hdparm.init
 Source2:	hdparm.sysconfig
 Patch0:		hdparm-optflags.patch
 Patch1:		hdparm-sparc.patch
-PreReq:		/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -58,19 +57,11 @@ install -d $RPM_BUILD_ROOT{{/sbin,%{_mandir}/man8},/etc/{sysconfig,rc.d/init.d}}
 install -s hdparm $RPM_BUILD_ROOT/sbin
 install hdparm.8 $RPM_BUILD_ROOT%{_mandir}/man8
 
-install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/hdparm
+install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/rc.hdparm
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/hdparm
 
 gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* \
 	Changelog
-
-%post
-/sbin/chkconfig --add hdparm
-
-%preun
-if [ "$1" = "0" ]; then
-	/sbin/chkconfig --del hdparm
-fi
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -79,6 +70,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc *.gz
 %attr(755,root,root) /sbin/hdparm
-%attr(754,root,root) /etc/rc.d/init.d/hdparm
+%attr(754,root,root) /etc/rc.d/rc.hdparm
 %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/hdparm
 %{_mandir}/man8/*
