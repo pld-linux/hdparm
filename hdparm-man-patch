@@ -1,5 +1,5 @@
---- hdparm.8.old	Tue Dec 18 22:48:23 2001
-+++ hdparm.8	Tue Dec 18 22:54:59 2001
+--- hdparm-4.6/hdparm.8.old	Tue Dec 18 22:48:23 2001
++++ hdparm-4.6/hdparm.8	Tue Dec 18 22:54:59 2001
 @@ -67,7 +67,9 @@
  .B sleeping
  (lowest power mode, drive is completely shut down).
