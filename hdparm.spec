@@ -7,7 +7,7 @@ Summary(pt_BR):	Utilitário para ajustar parâmetros de performance (E)IDE
 Summary(tr):	(E)IDE sabit disklerle ilgili bazý parametreleri deðiþtirir
 Name:		hdparm
 Version:	4.1
-Release:	3
+Release:	4
 License:	BSD
 Group:		Applications/System
 Group(de):	Applikationen/System
@@ -15,7 +15,9 @@ Group(pl):	Aplikacje/System
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/hardware/%{name}-%{version}.tar.gz
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
+Source3:	hdparm.8.pl
 Patch0:		%{name}-optflags.patch
+Patch1:		%{name}-%{version}-man-patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sbindir	/sbin
@@ -60,19 +62,21 @@ daha az güç harcamak için kullanabilirsiniz.
 %prep
 %setup  -q
 %patch0 -p1
+%patch1 -p0
 
 %build
 %{__make} OPTFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{{%{_sbindir},%{_mandir}/man8},%{_sysconfdir}/{sysconfig,rc.d/init.d}}
+install -d $RPM_BUILD_ROOT{{%{_sbindir},%{_mandir}/{man8,pl/man8}},%{_sysconfdir}/{sysconfig,rc.d/init.d}}
 
 install hdparm $RPM_BUILD_ROOT%{_sbindir}
 install hdparm.8 $RPM_BUILD_ROOT%{_mandir}/man8
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/rc.hdparm
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/hdparm
+install %{SOURCE3} $RPM_BUILD_ROOT%{_mandir}/pl/man8/hdparm.8
 
 gzip -9nf contrib/* Changelog
 
@@ -86,3 +90,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(754,root,root) /etc/rc.d/rc.hdparm
 %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/hdparm
 %{_mandir}/man8/*
+%{_mandir}/pl/man8/*
