@@ -1,0 +1,12 @@
+--- hdparm/hdparm.c.old	Sun Oct 20 20:01:41 2002
++++ hdparm/hdparm.c	Sun Oct 20 20:01:30 2002
+@@ -724,6 +724,9 @@
+ #else
+ 	case (SCSI_DISK_MAJOR):
+ #endif
++#ifdef SCSI_CDROM_MAJOR
++	case (SCSI_CDROM_MAJOR):
++#endif
+ #ifdef MD_MAJOR
+ 	case (MD_MAJOR):
+ #endif
