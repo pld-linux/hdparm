@@ -67,6 +67,8 @@ rm -rf $RPM_BUILD_ROOT
 - added pl transpation,
 - added patch (hdparm-optflags.diff) for using $RPM_OPT_FLAGS during
   compile,
+- changed Buildroot to /tmp/%%{name}-%%{version}-root,
+- added using %%{name} and %%{version} in Source,
 - spec rewrited for building package from non-root account.
 
 * Fri Apr 24 1998 Prospector System <bugs@redhat.com>
