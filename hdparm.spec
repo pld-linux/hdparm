@@ -13,7 +13,7 @@ Group:		Applications/System
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/hardware/%{name}-%{version}.tar.gz
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
-Source3:	hdparm.8.pl
+Source3:	%{name}.8.pl
 Patch0:		%{name}-man-patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
