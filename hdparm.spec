@@ -13,6 +13,7 @@ Source0:	ftp://sunsite.unc.edu/pub/Linux/system/hardware/%{name}-%{version}.tar.
 Source1:	hdparm.init
 Source2:	hdparm.sysconfig
 Patch0:		hdparm-optflags.patch
+PreReq:		/sbin/chkconfig
 Buildroot:	/tmp/%{name}-%{version}-root
 
 %description
