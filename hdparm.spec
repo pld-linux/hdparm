@@ -5,7 +5,7 @@ Summary(pl):	Narzêdzie do ustawiania parametrow (E)IDE
 Summary(tr):	(E)IDE sabit disklerle ilgili bazý parametreleri deðiþtirir
 Name:		hdparm
 Version:	4.1
-Release:	1
+Release:	2
 License:	BSD
 Group:		Applications/System
 Group(de):	Applikationen/System
