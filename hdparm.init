@@ -16,6 +16,7 @@ for drive in $(ls /proc/ide 2> /dev/null); do
 	    deltext
 	    ok
 	fi
+    fi
 done
 
 exit 0
