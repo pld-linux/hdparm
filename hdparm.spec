@@ -48,14 +48,13 @@ make OPTFLAGS="$RPM_OPT_FLAGS"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{sbin,usr/man/man8}
+install -d $RPM_BUILD_ROOT/{{sbin,usr/man/man8},etc/{sysconfig,rc.d/init.d}}
 
 install -s hdparm $RPM_BUILD_ROOT/sbin
 install hdparm.8 $RPM_BUILD_ROOT/usr/man/man8
 
-install -d $RPM_BUILD_ROOT/etc/{sysconfig,rc.d/init.d}
-install -m 644 $RPM_SOURCE_DIR/hdparm.init $RPM_BUILD_ROOT/etc/rc.d/init.d/hdparm
-install -m 644 $RPM_SOURCE_DIR/hdparm.sysconfig $RPM_BUILD_ROOT/etc/sysconfig/hdparm
+install $RPM_SOURCE_DIR/hdparm.init $RPM_BUILD_ROOT/etc/rc.d/init.d/hdparm
+install $RPM_SOURCE_DIR/hdparm.sysconfig $RPM_BUILD_ROOT/etc/sysconfig/hdparm
 
 gzip -9nf $RPM_BUILD_ROOT/usr/man/man*/* \
 	Changelog
