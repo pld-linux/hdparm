@@ -60,7 +60,7 @@ daha az güç harcamak için kullanabilirsiniz.
 
 %prep
 %setup  -q
-#%patch0 -p1
+%patch0 -p1
 
 %build
 %{__make} \
