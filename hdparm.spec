@@ -77,7 +77,8 @@ daha az güç harcamak için kullanabilirsiniz.
 %build
 %{__make} \
 	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags}"
+	CFLAGS="%{rpmcflags}" \
+	LDFLAGS="%{rpmldflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -89,7 +90,6 @@ install hdparm.8 $RPM_BUILD_ROOT%{_mandir}/man8
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/rc.hdparm
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/hdparm
 install %{SOURCE3} $RPM_BUILD_ROOT%{_mandir}/pl/man8/hdparm.8
-
 
 %clean
 rm -rf $RPM_BUILD_ROOT
