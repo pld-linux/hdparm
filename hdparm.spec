@@ -8,12 +8,12 @@ Summary(ru):	Утилита для показа/настройки параметров жестких дисков
 Summary(tr):	(E)IDE sabit disklerle ilgili bazЩ parametreleri deПiЧtirir
 Summary(uk):	Утил╕та для показу/установки параметр╕в жорстких диск╕в
 Name:		hdparm
-Version:	5.7
+Version:	5.8
 Release:	1
 License:	BSD
 Group:		Applications/System
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/hardware/%{name}-%{version}.tar.gz
-# Source0-md5:	1bfb16ac78ca4af8b3e4e3b9fab28743
+# Source0-md5:	a4187336bc79a8538549e18540313ffd
 # Source0-size:	38638
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
