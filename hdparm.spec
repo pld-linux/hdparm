@@ -85,7 +85,7 @@ daha az güç harcamak için kullanabilirsiniz.
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_sbindir},%{_mandir}/{man8,pl/man8}} \
-	$RPM_BUILD_ROOT%{_sysconfdir}/{sysconfig,rc.d/init.d}
+	$RPM_BUILD_ROOT/etc/{sysconfig,rc.d/init.d}
 
 install hdparm $RPM_BUILD_ROOT%{_sbindir}
 install hdparm.8 $RPM_BUILD_ROOT%{_mandir}/man8
