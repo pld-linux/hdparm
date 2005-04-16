@@ -8,12 +8,12 @@ Summary(ru):	Утилита для показа/настройки параметров жестких дисков
 Summary(tr):	(E)IDE sabit disklerle ilgili bazЩ parametreleri deПiЧtirir
 Summary(uk):	Утил╕та для показу/установки параметр╕в жорстких диск╕в
 Name:		hdparm
-Version:	5.9
+Version:	6.0
 Release:	1
 License:	BSD
 Group:		Applications/System
-Source0:	ftp://sunsite.unc.edu/pub/Linux/system/hardware/%{name}-%{version}.tar.gz
-# Source0-md5:	a270a01158981a8470d76b96f84e249a
+Source0:	http://rtr.ca/hdparm/%{name}-%{version}.tar.gz
+# Source0-md5:	0b31977451490eeaa1d3d82ed12d150a
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.8.pl
@@ -106,6 +106,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_sbindir}/idectl
 %attr(755,root,root) %{_sbindir}/ultrabayd
 %attr(754,root,root) /etc/rc.d/rc.hdparm
-%config(noreplace) %verify(not size mtime md5) /etc/sysconfig/hdparm
+%config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/hdparm
 %{_mandir}/man8/*
 %lang(pl) %{_mandir}/pl/man8/*
