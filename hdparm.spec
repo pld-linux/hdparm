@@ -12,13 +12,13 @@ Version:	6.1
 Release:	1
 License:	BSD
 Group:		Applications/System
-Source0:	http://rtr.ca/hdparm/%{name}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/hdparm/%{name}-%{version}.tar.gz
 # Source0-md5:	b883944bc26a480dcccae837c4ddf732
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.8.pl
 Patch0:		%{name}-man-patch
-URL:		http://www.ibiblio.org/pub/Linux/system/hardware/
+URL:		http://sourceforge.net/projects/hdparm/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sbindir	/sbin
