@@ -1,5 +1,5 @@
 # This file lets you set your hard drive parameters for better performance
-# See hparm(8) for details.
+# See hdparm(8) for details.
 # Please use -q flag before any other or you will get garbage on screen
 
 HDPARM_hda=
