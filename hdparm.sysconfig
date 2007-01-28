@@ -2,8 +2,8 @@
 # See hdparm(8) for details.
 # Please use -q flag before any other or you will get garbage on screen
 
-HDPARM_hda=
+#HDPARM_hda=
 #HDPARM_hdb="-qm 16 -qa 16 -qu 1"
-HDPARM_hdb=
-HDPARM_hdc=
-HDPARM_hdd=
+#HDPARM_hdb=
+#HDPARM_hdc=
+#HDPARM_hdd=
