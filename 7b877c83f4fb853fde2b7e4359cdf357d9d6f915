@@ -1,0 +1,2 @@
+- release 7 (for allow upgrade from RH 7),
+- small fix in %install for %{degug} (do not use -s in install parameters).
