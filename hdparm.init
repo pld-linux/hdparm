@@ -10,7 +10,7 @@ fi
 # Source function library
 . /etc/rc.d/init.d/functions
 
-# Source hdparm configureation.
+# Source hdparm configuration.
 . /etc/sysconfig/hdparm
 
 for var in $blockdevs; do
