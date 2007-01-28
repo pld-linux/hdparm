@@ -1,14 +1,22 @@
 #!/bin/sh
 
+[ -f /etc/sysconfig/hdparm ] || exit 0
+
+blockdevs=$(awk -F= '!/^#/ && !/^$/ {if ($2) print $1}' /etc/sysconfig/hdparm)
+if [ -z "$blockdevs" ]; then
+	exit 0
+fi
+
 # Source function library
 . /etc/rc.d/init.d/functions
 
-# Get service config
-[ -f /etc/sysconfig/hdparm ] && . /etc/sysconfig/hdparm
+# Source hdparm configureation.
+. /etc/sysconfig/hdparm
 
-for drive in $(ls /proc/ide 2> /dev/null); do
+for var in $blockdevs; do
+	drive=${var#HDPARM_}
 	if [ -L "/proc/ide/${drive}" ]; then
-		eval PARAMS=\$HDPARM_${drive}
+		eval PARAMS=\$$var
 		if [ -n "${PARAMS}" ]; then
 			show "Setting parameters for drive %s (%s)" "$drive" "$PARAMS"
 			busy
