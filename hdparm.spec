@@ -1,12 +1,12 @@
 Summary:	Utility for setting (E)IDE performance parameters
-Summary(es):	Utilitario para ajustar parАmetros de desempeЯo (E)IDE
-Summary(de):	Dienstprogramm zum Einstellen von (E)IDE-Parametern
-Summary(fr):	Utilitaire pour ajuster les paramИtres de performances des unitИs (E)IDE
-Summary(pl):	NarzЙdzie do ustawiania parametrow (E)IDE
-Summary(pt_BR):	UtilitАrio para ajustar parБmetros de performance (E)IDE
-Summary(ru):	Утилита для показа/настройки параметров жестких дисков
-Summary(tr):	(E)IDE sabit disklerle ilgili bazЩ parametreleri deПiЧtirir
-Summary(uk):	Утил╕та для показу/установки параметр╕в жорстких диск╕в
+Summary(es.UTF-8):   Utilitario para ajustar parц║metros de desempeц╠o (E)IDE
+Summary(de.UTF-8):   Dienstprogramm zum Einstellen von (E)IDE-Parametern
+Summary(fr.UTF-8):   Utilitaire pour ajuster les paramц╘tres de performances des unitц╘s (E)IDE
+Summary(pl.UTF-8):   Narzд≥dzie do ustawiania parametrow (E)IDE
+Summary(pt_BR.UTF-8):   Utilitц║rio para ajustar parц╒metros de performance (E)IDE
+Summary(ru.UTF-8):   пёя┌п╦п╩п╦я┌п╟ п╢п╩я▐ п©п╬п╨п╟п╥п╟/п╫п╟я│я┌я─п╬п╧п╨п╦ п©п╟я─п╟п╪п╣я┌я─п╬п╡ п╤п╣я│я┌п╨п╦я┘ п╢п╦я│п╨п╬п╡
+Summary(tr.UTF-8):   (E)IDE sabit disklerle ilgili bazд╠ parametreleri deд÷iе÷tirir
+Summary(uk.UTF-8):   пёя┌п╦п╩я√я┌п╟ п╢п╩я▐ п©п╬п╨п╟п╥я┐/я┐я│я┌п╟п╫п╬п╡п╨п╦ п©п╟я─п╟п╪п╣я┌я─я√п╡ п╤п╬я─я│я┌п╨п╦я┘ п╢п╦я│п╨я√п╡
 Name:		hdparm
 Version:	6.9
 Release:	2
@@ -28,49 +28,49 @@ This is a utility for setting Hard Drive parameters. It is useful for
 tweaking performance and for doing things like spinning down hard
 drives to conserve power.
 
-%description -l de
+%description -l de.UTF-8
 Dies ist ein Utility zum Einstellen der Festplatten-Parameter,
-nЭtzlich zum Feintunen der Leistung und zum Verlangsamen der
+nц╪tzlich zum Feintunen der Leistung und zum Verlangsamen der
 Drehgeschwindigkeit, wenn Strom gespart werden soll.
 
-%description -l es
-Este es un utilitario para ajustar parАmetros del disco duro. Es Зtil
-para mejorar el desempeЯo y para hacer cosas como diminuir la rotaciСn
-del disco para conservar energМa.
+%description -l es.UTF-8
+Este es un utilitario para ajustar parц║metros del disco duro. Es ц╨til
+para mejorar el desempeц╠o y para hacer cosas como diminuir la rotaciцЁn
+del disco para conservar energц╜a.
 
-%description -l fr
-Utilitaire pour configurer les paramЙtres du disque dur. Utile pour
-amИliorer les performances et pour ralentir les disques durs afin
-d'Иconomiser l'Иnergie.
+%description -l fr.UTF-8
+Utilitaire pour configurer les paramц╙tres du disque dur. Utile pour
+amц╘liorer les performances et pour ralentir les disques durs afin
+d'ц╘conomiser l'ц╘nergie.
 
-%description -l pl
-Pakiet ten zawiera program pozwalaj╠cy manipulowaФ rС©nymi parametrami
-dyskСw (E)IDE i SCSI. Przydaje siЙ, gdy chcemy polepszyФ wydajno╤Ф
-naszego dysku (E)IDE (na przykЁad opcje -u, -d), zatrzymaФ aby nie
-zu©ywaЁ pr╠du na laptopie, itd. ProszЙ zapoznaФ siЙ ze stron╠ manuala
-przed u©yciem hdparma.
+%description -l pl.UTF-8
+Pakiet ten zawiera program pozwalajд┘cy manipulowaд┤ rцЁе╪nymi parametrami
+dyskцЁw (E)IDE i SCSI. Przydaje siд≥, gdy chcemy polepszyд┤ wydajnoе⌡д┤
+naszego dysku (E)IDE (na przykе┌ad opcje -u, -d), zatrzymaд┤ aby nie
+zuе╪ywaе┌ prд┘du na laptopie, itd. Proszд≥ zapoznaд┤ siд≥ ze stronд┘ manuala
+przed uе╪yciem hdparma.
 
-%description -l pt_BR
-Este И um utilitАrio para ajustar parБmetros do disco rМgido. Ele И
-Зtil para melhorar a performance e para fazer coisas como diminuir a
-rotaГЦo do disco para conservar energia.
+%description -l pt_BR.UTF-8
+Este ц╘ um utilitц║rio para ajustar parц╒metros do disco rц╜gido. Ele ц╘
+ц╨til para melhorar a performance e para fazer coisas como diminuir a
+rotaц╖цёo do disco para conservar energia.
 
-%description -l ru
-Это полезная системная утилита для установки параметров жестких дисков
-(E)IDE. Например, hdparm можно использовать для настройки
-производительности и для остановки вращения дисков с целью экономии
-энергии.
+%description -l ru.UTF-8
+п╜я┌п╬ п©п╬п╩п╣п╥п╫п╟я▐ я│п╦я│я┌п╣п╪п╫п╟я▐ я┐я┌п╦п╩п╦я┌п╟ п╢п╩я▐ я┐я│я┌п╟п╫п╬п╡п╨п╦ п©п╟я─п╟п╪п╣я┌я─п╬п╡ п╤п╣я│я┌п╨п╦я┘ п╢п╦я│п╨п╬п╡
+(E)IDE. п²п╟п©я─п╦п╪п╣я─, hdparm п╪п╬п╤п╫п╬ п╦я│п©п╬п╩я▄п╥п╬п╡п╟я┌я▄ п╢п╩я▐ п╫п╟я│я┌я─п╬п╧п╨п╦
+п©я─п╬п╦п╥п╡п╬п╢п╦я┌п╣п╩я▄п╫п╬я│я┌п╦ п╦ п╢п╩я▐ п╬я│я┌п╟п╫п╬п╡п╨п╦ п╡я─п╟я┴п╣п╫п╦я▐ п╢п╦я│п╨п╬п╡ я│ я├п╣п╩я▄я▌ я█п╨п╬п╫п╬п╪п╦п╦
+я█п╫п╣я─пЁп╦п╦.
 
-%description -l tr
-Bu program ile sabit disk parametrelerini deПiЧtirebilirsiniz.
-Sistemin performansЩnЩ arttЩrmak ya da ЖrneПin disk hЩzЩnЩ azaltarak
-daha az gЭГ harcamak iГin kullanabilirsiniz.
+%description -l tr.UTF-8
+Bu program ile sabit disk parametrelerini deд÷iе÷tirebilirsiniz.
+Sistemin performansд╠nд╠ arttд╠rmak ya da ц╤rneд÷in disk hд╠zд╠nд╠ azaltarak
+daha az gц╪ц╖ harcamak iц╖in kullanabilirsiniz.
 
-%description -l uk
-Це корисна системна утил╕та для установки параметр╕в жорстких диск╕в
-(E)IDE. Наприклад, hdparm можна використовувати для настройки
-швидкост╕ обм╕ну даними ╕ для зупинки обертання диск╕в з метою
-збереження енерг╕╖.
+%description -l uk.UTF-8
+п╕п╣ п╨п╬я─п╦я│п╫п╟ я│п╦я│я┌п╣п╪п╫п╟ я┐я┌п╦п╩я√я┌п╟ п╢п╩я▐ я┐я│я┌п╟п╫п╬п╡п╨п╦ п©п╟я─п╟п╪п╣я┌я─я√п╡ п╤п╬я─я│я┌п╨п╦я┘ п╢п╦я│п╨я√п╡
+(E)IDE. п²п╟п©я─п╦п╨п╩п╟п╢, hdparm п╪п╬п╤п╫п╟ п╡п╦п╨п╬я─п╦я│я┌п╬п╡я┐п╡п╟я┌п╦ п╢п╩я▐ п╫п╟я│я┌я─п╬п╧п╨п╦
+я┬п╡п╦п╢п╨п╬я│я┌я√ п╬п╠п╪я√п╫я┐ п╢п╟п╫п╦п╪п╦ я√ п╢п╩я▐ п╥я┐п©п╦п╫п╨п╦ п╬п╠п╣я─я┌п╟п╫п╫я▐ п╢п╦я│п╨я√п╡ п╥ п╪п╣я┌п╬я▌
+п╥п╠п╣я─п╣п╤п╣п╫п╫я▐ п╣п╫п╣я─пЁя√я≈.
 
 %prep
 %setup -q
