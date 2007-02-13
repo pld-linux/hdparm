@@ -1,12 +1,12 @@
 Summary:	Utility for setting (E)IDE performance parameters
-Summary(es.UTF-8):   Utilitario para ajustar parámetros de desempeño (E)IDE
-Summary(de.UTF-8):   Dienstprogramm zum Einstellen von (E)IDE-Parametern
-Summary(fr.UTF-8):   Utilitaire pour ajuster les paramétres de performances des unités (E)IDE
-Summary(pl.UTF-8):   Narzędzie do ustawiania parametrow (E)IDE
-Summary(pt_BR.UTF-8):   Utilitário para ajustar parâmetros de performance (E)IDE
-Summary(ru.UTF-8):   Утилита для показа/настройки параметров жестких дисков
-Summary(tr.UTF-8):   (E)IDE sabit disklerle ilgili bazı parametreleri değiştirir
-Summary(uk.UTF-8):   Утиліта для показу/установки параметрів жорстких дисків
+Summary(es.UTF-8):	Utilitario para ajustar parámetros de desempeño (E)IDE
+Summary(de.UTF-8):	Dienstprogramm zum Einstellen von (E)IDE-Parametern
+Summary(fr.UTF-8):	Utilitaire pour ajuster les paramétres de performances des unités (E)IDE
+Summary(pl.UTF-8):	Narzędzie do ustawiania parametrow (E)IDE
+Summary(pt_BR.UTF-8):	Utilitário para ajustar parâmetros de performance (E)IDE
+Summary(ru.UTF-8):	Утилита для показа/настройки параметров жестких дисков
+Summary(tr.UTF-8):	(E)IDE sabit disklerle ilgili bazı parametreleri değiştirir
+Summary(uk.UTF-8):	Утиліта для показу/установки параметрів жорстких дисків
 Name:		hdparm
 Version:	6.9
 Release:	2
