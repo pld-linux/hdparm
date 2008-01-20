@@ -15,7 +15,7 @@ fi
 
 for var in $blockdevs; do
 	drive=${var#HDPARM_}
-	if [ -L "/proc/ide/${drive}" ]; then
+	if [ -L "/proc/ide/${drive}" -o -d "/sys/block/${drive}" ]; then
 		eval PARAMS=\$$var
 		if [ -n "${PARAMS}" ]; then
 			show "Setting parameters for drive %s (%s)" "$drive" "$PARAMS"
