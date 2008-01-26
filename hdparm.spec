@@ -18,6 +18,7 @@ Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.8.pl
 Patch0:		%{name}-man-patch
+Patch1:		%{name}-sgio.patch
 URL:		http://sourceforge.net/projects/hdparm/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -75,6 +76,7 @@ daha az güç harcamak için kullanabilirsiniz.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__make} \
@@ -101,11 +103,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc contrib/README Changelog README.acoustic
+%doc contrib/README Changelog LICENSE.TXT README.acoustic TODO
 %attr(755,root,root) %{_sbindir}/hdparm
 %attr(755,root,root) %{_sbindir}/idectl
 %attr(755,root,root) %{_sbindir}/ultrabayd
 %attr(754,root,root) /etc/rc.d/rc.hdparm
 %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/hdparm
-%{_mandir}/man8/*
-%lang(pl) %{_mandir}/pl/man8/*
+%{_mandir}/man8/hdparm.8*
+%lang(pl) %{_mandir}/pl/man8/hdparm.8*
