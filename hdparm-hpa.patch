@@ -102,7 +102,7 @@ Further TODO: implement SET_MAX security extension
 +		r.lob.dev = 0x40;
 +		taskfile_std_flags(&r, 1);
 +		if(!do_taskfile_cmd(fd, &r, 10))
-+			return ((__u64)((r.hob.lbah << 16) | (r.hob.lbam << 8) | r.hob.lbal)
++			return (((__u64)((r.hob.lbah << 16) | (r.hob.lbam << 8) | r.hob.lbal) << 24)
 +				     | ((r.lob.lbah << 16) | (r.lob.lbam << 8) | r.lob.lbal)) + 1;
 +		perror (" READ_NATIVE_MAX_ADDRESS_EXT failed");
 +	}
