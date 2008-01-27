@@ -1,0 +1,17 @@
+--- hdparm-7.7/hdparm.c.orig	2007-08-08 18:07:21.000000000 +0200
++++ hdparm-7.7/hdparm.c	2008-01-27 02:53:45.447177739 +0100
+@@ -385,9 +385,13 @@ static void dump_identity (__u16 *idw)
+ 	if (!(idw[53] & 1))
+ 		printf(" (maybe):");
+ 	printf(" CurCHS=%u/%u/%u, CurSects=%u", idw[54], idw[55], idw[56], idw[57] | (idw[58] << 16));
+-	printf(", LBA=%s", YN(idw[49] & 0x200));
++	printf("\n LBA=%s", YN(idw[49] & 0x200));
+ 	if (idw[49] & 0x200)
+  		printf(", LBAsects=%u", idw[60] | (idw[61] << 16));
++	printf(", LBA48=%s", YN(idw[86] & 0x400));
++	if (idw[86] & 0x400)
++		printf(", LBA48sects=%llu", (idw[100] | (idw[101] << 16)) |
++			((unsigned long long)(idw[102] | (idw[103] << 16)) << 32));
+ 
+ 	if (idw[49] & 0x100) {
+ 		if (idw[62] | idw[63]) {
