@@ -1,0 +1,274 @@
+Further TODO: implement SET_MAX security extension
+(SET_MAX_PASSWORD, SET_MAX_LOCK, SET_MAX_UNLOCK, SET_MAX_FREEZE)
+
+--- hdparm-7.7/hdparm.8.orig	2007-08-08 18:07:34.000000000 +0200
++++ hdparm-7.7/hdparm.8	2008-01-27 02:42:40.409279389 +0100
+@@ -267,6 +267,21 @@ At the moment, most drives only support 
+ These have been assigned the values 0, 128, and 254 at present, respectively,
+ but integer space has been incorporated for future expansion, should this change.
+ .TP
++.I -N
++Get native capacity/set number of sectors - also known as Host Protected Area
++setting. Without parameter shows current settings;
++.I -N
++.B sectors
++or
++.I -Nv
++.B sectors
++sets volatile maximum address, while
++.I -Np
++.B sectors
++sets non-volatile maximum address (preserved over power-up or hardware reset).
++Note: new value is specified as number of sectors, that is one more than "max
++address" on which raw drive command operates.
++.TP
+ .I -n
+ Get or set the "ignore write errors" flag in the driver.
+ Do NOT play with this without grokking the driver source code first.
+--- hdparm-7.7/hdparm.h.orig	2007-06-07 19:34:23.000000000 +0200
++++ hdparm-7.7/hdparm.h	2008-01-26 22:51:42.979589475 +0100
+@@ -42,6 +42,8 @@ enum {
+ 	ATA_OP_FLUSHCACHE_EXT		= 0xea,
+ 	ATA_OP_IDENTIFY			= 0xec,
+ 	ATA_OP_PIDENTIFY		= 0xa1,
++	ATA_OP_READ_NATIVE_MAX		= 0xf8,
++	ATA_OP_READ_NATIVE_MAX_EXT	= 0x27,
+ 	ATA_OP_SECURITY_DISABLE		= 0xf6,
+ 	ATA_OP_SECURITY_ERASE_PREPARE	= 0xf3,
+ 	ATA_OP_SECURITY_ERASE_UNIT	= 0xf4,
+@@ -51,6 +53,8 @@ enum {
+ 	ATA_OP_SETFEATURES		= 0xef,
+ 	ATA_OP_SETIDLE1			= 0xe3,
+ 	ATA_OP_SETIDLE2			= 0x97,
++	ATA_OP_SET_MAX			= 0xf9,
++	ATA_OP_SET_MAX_EXT		= 0x37,
+ 	ATA_OP_SLEEPNOW1		= 0xe5,
+ 	ATA_OP_SLEEPNOW2		= 0x99,
+ 	ATA_OP_SMART			= 0xb0,
+--- hdparm-7.7/hdparm.c.orig	2007-08-08 18:07:21.000000000 +0200
++++ hdparm-7.7/hdparm.c	2008-01-27 02:53:45.447177739 +0100
+@@ -98,6 +98,9 @@ static int	set_busstate = 0, get_busstat
+ static int	set_reread_partn = 0, get_reread_partn;
+ static int	set_acoustic = 0, get_acoustic = 0, acoustic = 0;
+ 
++static int get_native_max_address = 0, set_max_address, set_max_nonvolat = 0;
++static unsigned long long set_max_sectors = 0;
++
+ static int	get_doreset = 0, set_doreset = 0;
+ static int	get_tristate = 0, set_tristate = 0, tristate = 0;
+ static int	i_know_what_i_am_doing = 0;
+@@ -801,6 +808,109 @@ static void flush_wcache (int fd, __u16 
+ 		perror (" HDIO_DRIVE_CMD(flushcache) failed");
+ }
+ 
++static void taskfile_std_flags(struct hdio_taskfile *r, int ext)
++{
++	r->in_flags.lob.feat = r->out_flags.lob.feat = 1;
++	r->in_flags.lob.lbal = r->out_flags.lob.lbal = 1;
++	r->in_flags.lob.nsect = r->out_flags.lob.nsect = 1;
++	r->in_flags.lob.lbam = r->out_flags.lob.lbam = 1;
++	r->in_flags.lob.lbah = r->out_flags.lob.lbah = 1;
++	r->in_flags.lob.dev = r->out_flags.lob.dev = 1;
++	r->in_flags.lob.command = r->out_flags.lob.command = 1;
++	if(ext) {
++		r->in_flags.hob.lbal = r->out_flags.hob.lbal = 1;
++		r->in_flags.hob.nsect = r->out_flags.hob.nsect = 1;
++		r->in_flags.hob.lbam = r->out_flags.hob.lbam = 1;
++		r->in_flags.hob.lbah = r->out_flags.hob.lbah = 1;
++	}
++}
++
++static __u64 get_capacity (__u16 *idw)
++{
++	if (idw[86] & 0x400)
++		return (idw[100] | (idw[101] << 16)) |
++		      ((unsigned long long)(idw[102] | (idw[103] << 16)) << 32);
++	if (idw[49] & 0x200)
++ 		return idw[60] | (idw[61] << 16);
++	return idw[57] | idw[58] << 16;
++}
++
++static __u64 get_native_max (int fd, __u16 **id_p)
++{
++	struct hdio_taskfile r;
++	__u16 *id;
++
++	*id_p = id = get_identify_data(fd, *id_p);
++	if (id && ((id[83] & 0xc400) == 0x4400) && (id[86] & 0x0400)) {
++		memset(&r, 0, sizeof(r));
++		r.cmd_req = TASKFILE_CMD_REQ_NODATA;
++		r.xfer_method = TASKFILE_XFER_METHOD_NONE;
++		r.lob.command = ATA_OP_READ_NATIVE_MAX_EXT;
++		r.lob.dev = 0x40;
++		taskfile_std_flags(&r, 1);
++		if(!do_taskfile_cmd(fd, &r, 10))
++			return ((__u64)((r.hob.lbah << 16) | (r.hob.lbam << 8) | r.hob.lbal)
++				     | ((r.lob.lbah << 16) | (r.lob.lbam << 8) | r.lob.lbal)) + 1;
++		perror (" READ_NATIVE_MAX_ADDRESS_EXT failed");
++	}
++	memset(&r, 0, sizeof(r));
++	r.cmd_req = TASKFILE_CMD_REQ_NODATA;
++	r.xfer_method = TASKFILE_XFER_METHOD_NONE;
++	r.lob.command = ATA_OP_READ_NATIVE_MAX;
++	r.lob.dev = 0x40;
++	taskfile_std_flags(&r, 0);
++	if (!do_taskfile_cmd(fd, &r, 10))
++		return ((r.lob.lbah << 16) | (r.lob.lbam << 8) | r.lob.lbal) + 1;
++	perror (" READ_NATIVE_MAX_ADDRESS failed");
++	return 0;
++}
++
++static void set_max (int fd, __u16 **id_p, __u64 secs, int nonvolat)
++{
++	struct hdio_taskfile r;
++	__u16 *id;
++	__u64 addr = secs - 1;
++
++	*id_p = id = get_identify_data(fd, *id_p);
++	if (id && ((id[83] & 0xc400) == 0x4400) && (id[86] & 0x0400)) {
++		memset(&r, 0, sizeof(r));
++		r.cmd_req = TASKFILE_CMD_REQ_NODATA;
++		r.xfer_method = TASKFILE_XFER_METHOD_NONE;
++		r.lob.command = ATA_OP_SET_MAX_EXT;
++		r.lob.feat = 0;
++		r.lob.dev = 0x40;
++		r.lob.nsect = nonvolat ? 1 : 0;
++		r.lob.lbal = addr & 0xff;
++		r.lob.lbam = (addr >> 8) & 0xff;
++		r.lob.lbah = (addr >> 16) & 0xff;
++		r.hob.lbal = (addr >> 24) & 0xff;
++		r.hob.lbam = (addr >> 32) & 0xff;
++		r.hob.lbah = (addr >> 40) & 0xff;
++		taskfile_std_flags(&r, 1);
++		if(!do_taskfile_cmd(fd, &r, 10))
++			return;
++		perror (" SET_MAX_ADDRESS_EXT failed");
++	}
++	if(addr & 0xfffffffff0000000LLU) {
++		fprintf(stderr, " Address exceeds LBA28, aborting.\n");
++		return;
++	}
++	memset(&r, 0, sizeof(r));
++	r.cmd_req = TASKFILE_CMD_REQ_NODATA;
++	r.xfer_method = TASKFILE_XFER_METHOD_NONE;
++	r.lob.command = ATA_OP_SET_MAX;
++	r.lob.feat = 0;
++	r.lob.dev = 0x40 | ((addr >> 24) & 0x0f);
++	r.lob.nsect = nonvolat ? 1 : 0;
++	r.lob.lbal = addr & 0xff;
++	r.lob.lbam = (addr >> 8) & 0xff;
++	r.lob.lbah = (addr >> 16) & 0xff;
++	taskfile_std_flags(&r, 0);
++	if (do_taskfile_cmd(fd, &r, 10))
++		perror (" SET_MAX_ADDRESS failed");
++	return;
++}
++
+ void process_dev (char *devname)
+ {
+ 	int fd;
+@@ -1097,6 +1207,11 @@ open_ok:
+ 		if (ioctl(fd, HDIO_SET_BUSSTATE, busstate))
+ 			perror(" HDIO_SET_BUSSTATE failed");
+ 	}
++	if (set_max_address) {
++		if (get_native_max_address)
++			printf(" setting native max address to %llu (%svolatile)\n", set_max_sectors-1, set_max_nonvolat ? "non-" : "");
++		set_max(fd, &id, set_max_sectors, set_max_nonvolat);
++	}
+ 	if (do_drq_hsm_error) {
+ 		id = get_identify_data(fd, id);
+ 		if (id) {
+@@ -1308,6 +1423,20 @@ open_ok:
+ 		else
+ 			printf(" busstate      = %2ld (%s)\n", parm, busstate_str(parm));
+ 	}
++	if (get_native_max_address) {
++		unsigned long long secs = get_native_max(fd, &id), vissecs = get_capacity(id);
++		if (secs) {
++			printf(" native max address = %llu\n", secs-1);
++			printf(" native sectors     = %llu\n", secs);
++			printf(" visible sectors    = %llu", vissecs);
++			if (vissecs < secs)
++				printf(", HPA is enabled\n");
++			else if(vissecs == secs)
++				printf(", HPA is disabled\n");
++			else
++				printf(", HPA setting seems invalid\n");
++		}
++	}
+ 
+ 	if (do_ctimings)
+ 		time_cache(fd);
+@@ -1368,6 +1497,7 @@ static void usage_help (int rc)
+ 	" -L   set drive doorlock (0/1) (removable harddisks only)\n"
+ 	" -M   get/set acoustic management (0-254, 128: quiet, 254: fast)\n"
+ 	" -m   get/set multiple sector count\n"
++	" -N   get native/set max drive sectors (HPA)\n"
+ 	" -n   get/set ignore-write-errors flag (0/1)\n"
+ 	" -p   set PIO mode on IDE interface chipset (0,1,2,3,4,...)\n"
+ 	" -P   set drive prefetch count\n"
+@@ -1563,6 +1693,35 @@ static void get_security_password (int h
+ }
+ 
+ static void
++get_addr_parm (void)
++{
++	int got_digit = 0;
++
++	set_max_sectors = 0;
++	get_native_max_address = noisy;
++	noisy = 1;
++	if (*argp == 'p') {
++		set_max_nonvolat = 1;
++		argp++;
++	} else if (*argp == 'v') {
++		set_max_nonvolat = 0;
++		argp++;
++	}
++
++	if (!*argp && argc && isdigit(**argv))
++		argp = *argv++, --argc;
++	while (isdigit(*argp)) {
++		set_max_address = 1;
++		set_max_sectors = (set_max_sectors * 10) + (*argp++ - '0');
++		got_digit = 1;
++	}
++	if (set_max_address && ((set_max_sectors < 1) || (set_max_sectors > 0xfffffffffffeLLU))) {
++		fprintf(stderr, "  -N: bad value (1..2^48-2)\n");
++		exit(EINVAL);
++	}
++}
++
++static void
+ handle_standalone_longarg (char *name)
+ {
+ 	if (num_flags_processed) {
+@@ -1720,6 +1879,7 @@ int main (int _argc, char **_argv)
+ 				case GET_SET_PARM('m',"multmode-count",mult,0,64);
+ 				case GET_SET_PARM('M',"acoustic-management",acoustic,0,255);
+ 				case GET_SET_PARM('n',"ignore-write-errors",nowerr,0,1);
++				case              'N': get_addr_parm(); break;
+ 				case     SET_PARM('P',"prefetch",prefetch,0,255);
+ 				case              'q': quiet = 1; noisy = 0; break;
+ 				case     SET_PARM('Q',"queue-depth",dma_q,0,32);
+--- hdparm-7.7/sgio.c.orig	2008-01-26 22:18:56.667535000 +0100
++++ hdparm-7.7/sgio.c	2008-01-27 02:21:12.263872166 +0100
+@@ -65,11 +65,16 @@ void tf_init (struct ata_tf *tf, __u8 at
+ 	memset(tf, 0, sizeof(*tf));
+ 	tf->command = ata_op;
+ 	tf->dev     = ATA_USING_LBA;
++	switch (ata_op) {
++		case ATA_OP_READ_NATIVE_MAX_EXT:
++		case ATA_OP_SET_MAX_EXT:
++			tf->is_lba48 = 1;
++	}
+ 	if (lba) {
+ 		tf->lob.lbal = lba;
+ 		tf->lob.lbam = lba >>  8;
+ 		tf->lob.lbah = lba >> 16;
+-		if ((lba & ~lba28_mask) == 0) {
++		if (!tf->is_lba48 && ((lba & ~lba28_mask) == 0)) {
+ 			tf->dev |= (lba >> 24) & 0x0f;
+ 		} else {
+ 			tf->hob.lbal = lba >> 24;
