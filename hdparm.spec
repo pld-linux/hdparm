@@ -9,7 +9,7 @@ Summary(tr.UTF-8):	(E)IDE sabit disklerle ilgili bazı parametreleri değiştiri
 Summary(uk.UTF-8):	Утиліта для показу/установки параметрів жорстких дисків
 Name:		hdparm
 Version:	7.7
-Release:	1
+Release:	1.1
 License:	BSD
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/hdparm/%{name}-%{version}.tar.gz
@@ -19,6 +19,8 @@ Source2:	%{name}.sysconfig
 Source3:	%{name}.8.pl
 Patch0:		%{name}-man-patch
 Patch1:		%{name}-sgio.patch
+Patch2:		%{name}-i-lba48.patch
+Patch3:		%{name}-hpa.patch
 URL:		http://sourceforge.net/projects/hdparm/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -77,6 +79,11 @@ daha az güç harcamak için kullanabilirsiniz.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+%patch3 -p1
+
+# precompiled binary
+rm contrib/fix_standby
 
 %build
 %{__make} \
