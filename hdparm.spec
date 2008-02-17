@@ -1,11 +1,11 @@
-Summary:	Utility for setting (E)IDE performance parameters
-Summary(es.UTF-8):	Utilitario para ajustar parámetros de desempeño (E)IDE
-Summary(de.UTF-8):	Dienstprogramm zum Einstellen von (E)IDE-Parametern
-Summary(fr.UTF-8):	Utilitaire pour ajuster les paramétres de performances des unités (E)IDE
-Summary(pl.UTF-8):	Narzędzie do ustawiania parametrow (E)IDE
-Summary(pt_BR.UTF-8):	Utilitário para ajustar parâmetros de performance (E)IDE
+Summary:	Utility to get/set (E)IDE/SATA/SAS device parameters
+Summary(es.UTF-8):	Utilitario para ajustar parámetros de desempeño (E)IDE/SATA/SAS
+Summary(de.UTF-8):	Dienstprogramm zum Einstellen von (E)IDE/SATA/SAS-Parametern
+Summary(fr.UTF-8):	Utilitaire pour ajuster les paramétres de performances des unités (E)IDE/SATA/SAS
+Summary(pl.UTF-8):	Narzędzie do odczytu i ustawiania parametrów urządzeń (E)IDE/SATA/SAS
+Summary(pt_BR.UTF-8):	Utilitário para ajustar parâmetros de performance (E)IDE/SATA/SAS
 Summary(ru.UTF-8):	Утилита для показа/настройки параметров жестких дисков
-Summary(tr.UTF-8):	(E)IDE sabit disklerle ilgili bazı parametreleri değiştirir
+Summary(tr.UTF-8):	(E)IDE/SATA/SAS sabit disklerle ilgili bazı parametreleri değiştirir
 Summary(uk.UTF-8):	Утиліта для показу/установки параметрів жорстких дисків
 Name:		hdparm
 Version:	8.1
@@ -46,10 +46,10 @@ d'économiser l'énergie.
 
 %description -l pl.UTF-8
 Pakiet ten zawiera program pozwalający manipulować różnymi parametrami
-dysków (E)IDE i SCSI. Przydaje się, gdy chcemy polepszyć wydajność
+dysków (E)IDE, SATA i SAS. Przydaje się, gdy chcemy polepszyć wydajność
 naszego dysku (E)IDE (na przykład opcje -u, -d), zatrzymać aby nie
-zużywał prądu na laptopie, itd. Proszę zapoznać się ze stroną manuala
-przed użyciem hdparma.
+zużywał prądu na laptopie, itd. Przed użyciem należy zapoznać się ze
+stroną manuala.
 
 %description -l pt_BR.UTF-8
 Este é um utilitário para ajustar parâmetros do disco rígido. Ele é
@@ -58,7 +58,7 @@ rotação do disco para conservar energia.
 
 %description -l ru.UTF-8
 Это полезная системная утилита для установки параметров жестких дисков
-(E)IDE. Например, hdparm можно использовать для настройки
+(E)IDE/SATA/SAS. Например, hdparm можно использовать для настройки
 производительности и для остановки вращения дисков с целью экономии
 энергии.
 
@@ -69,7 +69,7 @@ daha az güç harcamak için kullanabilirsiniz.
 
 %description -l uk.UTF-8
 Це корисна системна утиліта для установки параметрів жорстких дисків
-(E)IDE. Наприклад, hdparm можна використовувати для настройки
+(E)IDE/SATA/SAS. Наприклад, hdparm можна використовувати для настройки
 швидкості обміну даними і для зупинки обертання дисків з метою
 збереження енергії.
 
