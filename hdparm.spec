@@ -9,7 +9,7 @@ Summary(tr.UTF-8):	(E)IDE/SATA/SAS sabit disklerle ilgili bazı parametreleri de
 Summary(uk.UTF-8):	Утиліта для показу/установки параметрів жорстких дисків
 Name:		hdparm
 Version:	8.2
-Release:	0.1
+Release:	1
 License:	BSD
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/hdparm/%{name}-%{version}.tar.gz
@@ -18,7 +18,6 @@ Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.8.pl
 Patch0:		%{name}-man-patch
-Patch1:		%{name}-hpa.patch
 URL:		http://sourceforge.net/projects/hdparm/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -76,8 +75,6 @@ daha az güç harcamak için kullanabilirsiniz.
 %prep
 %setup -q
 %patch0 -p1
-# ?
-#%patch1 -p1
 
 # precompiled binary
 rm contrib/fix_standby
