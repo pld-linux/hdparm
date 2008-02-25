@@ -1,0 +1,3 @@
+- updated to 8.5
+- upgading is *strongly* recommended
+[fixes security commands (passwd) broken since 8.0]
