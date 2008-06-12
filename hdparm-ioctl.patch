@@ -1,0 +1,20 @@
+--- hdparm-8.8/hdparm.h.orig	2008-06-03 17:35:07.000000000 +0200
++++ hdparm-8.8/hdparm.h	2008-06-12 18:15:49.971172186 +0200
+@@ -75,5 +75,5 @@
+ #ifdef BLKGETSIZE64
+ #undef BLKGETSIZE64
+ #endif
+-#define BLKGETSIZE64 _IOR(0x12,114,__u64)
++#define BLKGETSIZE64 _IOR(0x12,114,size_t) /* broken __u64 arg actually */
+ 
+--- hdparm-8.8/Makefile.orig	2008-06-02 18:58:29.000000000 +0200
++++ hdparm-8.8/Makefile	2008-06-12 18:16:39.325984756 +0200
+@@ -31,7 +31,7 @@
+ 	$(CC) $(LDFLAGS) -o hdparm $(OBJS)
+ 	strip hdparm
+ 
+-sgio.o:	sgio.h
++geom.o:	hdparm.h
+ 
+ hdparm.o:	hdparm.h sgio.h
+ 
