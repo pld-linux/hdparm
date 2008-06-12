@@ -18,6 +18,7 @@ Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.8.pl
 Patch0:		%{name}-man-patch
+Patch1:		%{name}-ioctl.patch
 URL:		http://sourceforge.net/projects/hdparm/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -75,6 +76,7 @@ daha az güç harcamak için kullanabilirsiniz.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 # precompiled binary
 rm contrib/fix_standby
