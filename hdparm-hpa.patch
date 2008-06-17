@@ -1,0 +1,12 @@
+--- hdparm-8.1/hdparm.c.orig	2008-02-16 16:23:13.000000000 +0100
++++ hdparm-8.1/hdparm.c	2008-02-17 17:32:47.445579198 +0100
+@@ -1006,6 +1006,9 @@
+ 	r.cmd_req     = TASKFILE_CMD_REQ_NODATA;
+ 	r.xfer_method = TASKFILE_XFER_METHOD_NONE;
+ 
++	/* reset feat to 0 to ensure SET MAX ADDRESS command in case something
++	 * gets executed between READ_NATIVE_MAX_ADDRESS and SET_MAX */
++	r.out_flags.lob.b.feat    = 1; 
+ 	r.out_flags.lob.b.nsect   = 1;
+ 	r.out_flags.lob.b.lbal    = 1;
+ 	r.out_flags.lob.b.lbam    = 1;
