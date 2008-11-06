@@ -1,6 +1,6 @@
---- hdparm-5.3/hdparm.8.orig	Sun Nov 24 23:54:29 2002
-+++ hdparm-5.3/hdparm.8	Wed Nov 27 12:45:18 2002
-@@ -68,7 +68,9 @@
+--- hdparm-9.3/hdparm.8.orig	2008-11-04 18:56:25.000000000 +0100
++++ hdparm-9.3/hdparm.8	2008-11-06 21:12:31.565554598 +0100
+@@ -81,7 +81,9 @@
  .B sleeping
  (lowest power mode, drive is completely shut down).
  The
@@ -11,7 +11,7 @@
  and
  .B -Z
  flags can be used to manipulate the IDE power modes.
-@@ -210,8 +212,8 @@
+@@ -352,8 +354,8 @@
  flag can be used to find the maximum setting supported by an installed drive
  (look for MaxMultSect in the output).
  Some drives claim to support multiple mode, but lose data at some settings.
@@ -20,9 +20,9 @@
 +Under rare circumstances, such failures can result in \fBmassive filesystem
 +corruption\fP.
  .TP
- .I -M
- Get/set Automatic Acoustic Management (AAM) setting. Most modern harddisk drives 
-@@ -334,8 +336,7 @@
+ .I --make-bad-sector
+ Deliberately create a bad sector (aka. "media error") on the disk.
+@@ -569,8 +571,7 @@
  .B Use this feature with caution:
  some drive/controller combinations do
  not tolerate the increased I/O latencies possible when this feature is enabled,
@@ -32,12 +32,12 @@
  In particular,
  .B CMD-640B
  and
-@@ -398,7 +399,7 @@
+@@ -644,7 +645,7 @@
  On drives which support alternate transfer modes,
- .I -X
+ .B -X
  can be used to switch the mode of the drive
--.I only.
-+.IR only .
+-.B only.
++.BR only .
  Prior to changing the transfer mode, the IDE interface should be jumpered
  or programmed (see
- .I -p
+ .B -p
