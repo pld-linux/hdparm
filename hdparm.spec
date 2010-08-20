@@ -8,12 +8,12 @@ Summary(ru.UTF-8):	Утилита для показа/настройки пар�
 Summary(tr.UTF-8):	(E)IDE/SATA/SAS sabit disklerle ilgili bazı parametreleri değiştirir
 Summary(uk.UTF-8):	Утиліта для показу/установки параметрів жорстких дисків
 Name:		hdparm
-Version:	9.29
+Version:	9.30
 Release:	1
 License:	BSD
 Group:		Applications/System
 Source0:	http://downloads.sourceforge.net/hdparm/%{name}-%{version}.tar.gz
-# Source0-md5:	6575aba60e5adee628414cac76549c9b
+# Source0-md5:	b4cc528afb1db7c35e3701d2d96012b2
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.8.pl
@@ -46,10 +46,10 @@ d'économiser l'énergie.
 
 %description -l pl.UTF-8
 Pakiet ten zawiera program pozwalający manipulować różnymi parametrami
-dysków (E)IDE, SATA i SAS. Przydaje się, gdy chcemy polepszyć wydajność
-naszego dysku (E)IDE (na przykład opcje -u, -d), zatrzymać aby nie
-zużywał prądu na laptopie, itd. Przed użyciem należy zapoznać się ze
-stroną manuala.
+dysków (E)IDE, SATA i SAS. Przydaje się, gdy chcemy polepszyć
+wydajność naszego dysku (E)IDE (na przykład opcje -u, -d), zatrzymać
+aby nie zużywał prądu na laptopie, itd. Przed użyciem należy zapoznać
+się ze stroną manuala.
 
 %description -l pt_BR.UTF-8
 Este é um utilitário para ajustar parâmetros do disco rígido. Ele é
