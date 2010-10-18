@@ -1,6 +1,6 @@
 Summary:	Utility to get/set (E)IDE/SATA/SAS device parameters
-Summary(es.UTF-8):	Utilitario para ajustar parámetros de desempeño (E)IDE/SATA/SAS
 Summary(de.UTF-8):	Dienstprogramm zum Einstellen von (E)IDE/SATA/SAS-Parametern
+Summary(es.UTF-8):	Utilitario para ajustar parámetros de desempeño (E)IDE/SATA/SAS
 Summary(fr.UTF-8):	Utilitaire pour ajuster les paramétres de performances des unités (E)IDE/SATA/SAS
 Summary(pl.UTF-8):	Narzędzie do odczytu i ustawiania parametrów urządzeń (E)IDE/SATA/SAS
 Summary(pt_BR.UTF-8):	Utilitário para ajustar parâmetros de performance (E)IDE/SATA/SAS
