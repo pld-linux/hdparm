@@ -8,12 +8,12 @@ Summary(ru.UTF-8):	Утилита для показа/настройки пар�
 Summary(tr.UTF-8):	(E)IDE/SATA/SAS sabit disklerle ilgili bazı parametreleri değiştirir
 Summary(uk.UTF-8):	Утиліта для показу/установки параметрів жорстких дисків
 Name:		hdparm
-Version:	9.35
+Version:	9.36
 Release:	1
 License:	BSD
 Group:		Applications/System
 Source0:	http://downloads.sourceforge.net/hdparm/%{name}-%{version}.tar.gz
-# Source0-md5:	520996cc36b69212c3907df351296702
+# Source0-md5:	d1f19a3a8fa5d83e33729ddac904894d
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.8.pl
