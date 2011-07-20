@@ -9,7 +9,7 @@ Summary(tr.UTF-8):	(E)IDE/SATA/SAS sabit disklerle ilgili bazı parametreleri de
 Summary(uk.UTF-8):	Утиліта для показу/установки параметрів жорстких дисків
 Name:		hdparm
 Version:	9.37
-Release:	1
+Release:	2
 License:	BSD
 Group:		Applications/System
 Source0:	http://downloads.sourceforge.net/hdparm/%{name}-%{version}.tar.gz
@@ -81,6 +81,8 @@ daha az güç harcamak için kullanabilirsiniz.
 # precompiled binary
 %{__rm} contrib/fix_standby
 
+mv wiper/README.txt wiper/README-wiper.txt
+
 %build
 %{__make} \
 	CC="%{__cc}" \
@@ -92,14 +94,14 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_sbindir},%{_mandir}/{man8,pl/man8}} \
 	$RPM_BUILD_ROOT/etc/{sysconfig,rc.d/init.d}
 
-install hdparm $RPM_BUILD_ROOT%{_sbindir}
-install hdparm.8 $RPM_BUILD_ROOT%{_mandir}/man8
-install contrib/idectl $RPM_BUILD_ROOT%{_sbindir}
-install contrib/ultrabayd $RPM_BUILD_ROOT%{_sbindir}
+install -p hdparm $RPM_BUILD_ROOT%{_sbindir}
+cp -p hdparm.8 $RPM_BUILD_ROOT%{_mandir}/man8
+install -p contrib/idectl $RPM_BUILD_ROOT%{_sbindir}
+install -p contrib/ultrabayd $RPM_BUILD_ROOT%{_sbindir}
 
-install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/rc.hdparm
-install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/hdparm
-install %{SOURCE3} $RPM_BUILD_ROOT%{_mandir}/pl/man8/hdparm.8
+install -p %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/rc.hdparm
+cp -p %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/hdparm
+cp -p %{SOURCE3} $RPM_BUILD_ROOT%{_mandir}/pl/man8/hdparm.8
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -107,6 +109,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc contrib/README Changelog LICENSE.TXT README.acoustic TODO
+%doc wiper/wiper.sh wiper/README-wiper.txt
 %attr(755,root,root) %{_sbindir}/hdparm
 %attr(755,root,root) %{_sbindir}/idectl
 %attr(755,root,root) %{_sbindir}/ultrabayd
