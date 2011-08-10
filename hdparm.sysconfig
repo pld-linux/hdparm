@@ -1,9 +1,13 @@
 # This file lets you set your hard drive parameters for better performance
 # See hdparm(8) for details.
 # Please use -q flag before any other or you will get garbage on screen
+# You can use here /dev node ("/dev/"-part stripped), also /dev/disks/by-id is accepted
 
 #HDPARM_hda=
 #HDPARM_hdb="-qm 16 -qa 16 -qu 1"
 #HDPARM_hdb=
 #HDPARM_hdc=
 #HDPARM_hdd=
+#
+# for /dev/disk/by-id/ata-HDS722525VLSA80_VN6JTECFF1SP0A:
+#HDPARM_HDS722525VLSA80_VN6JTECFF1SP0A="-qy"

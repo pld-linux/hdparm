@@ -15,12 +15,25 @@ fi
 
 for var in $blockdevs; do
 	drive=${var#HDPARM_}
-	if [ -L "/proc/ide/${drive}" -o -d "/sys/block/${drive}" ]; then
+
+	# check if it is some ID
+	if [ -L /dev/disk/by-id/ata-$drive ]; then
+		dev=$(readlink -f /dev/disk/by-id/ata-$drive)
+	elif [ -L /dev/disk/by-id/scsi-$dev ]; then
+		dev=$(readlink -f /dev/disk/by-id/scsi-$drive)
+	else
+		dev=$drive
+	fi
+
+	# strip /dev
+	dev=${dev#/dev/}
+
+	if [ -L "/proc/ide/$dev" -o -d "/sys/block/$dev" ]; then
 		eval PARAMS=\$$var
-		if [ -n "${PARAMS}" ]; then
+		if [ -n "$PARAMS" ]; then
 			show "Setting parameters for drive %s (%s)" "$drive" "$PARAMS"
 			busy
-			/sbin/hdparm ${PARAMS} /dev/${drive}
+			/sbin/hdparm $PARAMS /dev/$dev
 			ok
 		fi
 	fi
