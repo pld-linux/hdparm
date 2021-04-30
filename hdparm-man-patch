@@ -10,9 +10,9 @@
 +.BR -Y ,
  and
  .B -Z
- flags can be used to manipulate the IDE power modes.
+ options can be used to manipulate the IDE power modes.
 @@ -352,8 +354,8 @@
- flag can be used to find the maximum setting supported by an installed drive
+ option can be used to find the maximum setting supported by an installed drive
  (look for MaxMultSect in the output).
  Some drives claim to support multiple mode, but lose data at some settings.
 -Under rare circumstances, such failures can result in
