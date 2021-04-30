@@ -9,7 +9,7 @@ Summary(tr.UTF-8):	(E)IDE/SATA/SAS sabit disklerle ilgili bazı parametreleri de
 Summary(uk.UTF-8):	Утиліта для показу/установки параметрів жорстких дисків
 Name:		hdparm
 Version:	9.61
-Release:	1
+Release:	2
 License:	BSD
 Group:		Applications/System
 Source0:	https://downloads.sourceforge.net/hdparm/%{name}-%{version}.tar.gz
@@ -87,7 +87,8 @@ mv wiper/README.txt wiper/README-wiper.txt
 %{__make} \
 	CC="%{__cc}" \
 	CFLAGS="%{rpmcppflags} %{rpmcflags}" \
-	LDFLAGS="%{rpmldflags}"
+	LDFLAGS="%{rpmldflags}" \
+	STRIP=:
 
 %install
 rm -rf $RPM_BUILD_ROOT
